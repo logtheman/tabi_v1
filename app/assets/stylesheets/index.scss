@@ -1,0 +1,123 @@
+
+html{
+
+	background-color: #dee1e2;
+
+}
+
+body {
+	background-image: url('banner1_black_white.jpg'); 
+	// min-height: 500px;
+	min-width: 400px;
+	background-repeat:no-repeat;
+	background-size:100% auto;
+
+}
+
+// Navigation links 
+
+.nav-links{
+	a{
+		color: white;
+		text-shadow: 1.5px 1px 0 black;
+		&:hover{
+			color: lightblue;
+			text-shadow: 2.5px 1px 0 black;
+		}
+		&.active{
+			color: lightblue;
+		}
+	}
+	.title-header{
+		color:white;
+		text-shadow: 1px 0 0 black;
+		font-size: 3em;
+	}
+
+}
+
+// Opening banner, title and entry point
+.banner{
+	.open-title{
+		font-size: 6em;
+		color:black;
+	}
+
+	.travel-date-inputs{
+		text-align:center
+	}
+
+	button	{
+		height: 3em;
+		border-radius: 22.5px;
+		background-color: white;
+	}
+
+	.text-shadow{
+		text-shadow: 1.5px 1px 0 white;
+	}
+	.trip-dates{
+		// background-color: white;
+		// border-radius: 20px;
+		// border-bottom: 1px solid black;
+		font-size: 2em;
+
+		button{
+			border-radius: 5px;
+		}
+	}
+}
+
+@media(min-width: 900px){
+	body {
+		background-image: url('banner1_black_white.jpg'); 
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+	  min-height: 700px
+	}
+
+}
+
+
+/********************** Single Day Container ****************************************/
+
+.single-day-container{
+	background-color: white;
+	min-height: 400px;
+
+
+	.day-header{
+		font-size: 1.5em;
+		color: #445;
+		border-bottom: 1px solid #CCC;
+		-webkit-box-shadow: 0px 2px 8px 1px rgba(94,94,94,0.19);
+		-moz-box-shadow: 0px 2px 8px 1px rgba(94,94,94,0.19);
+		box-shadow: 0px 2px 8px 1px rgba(94,94,94,0.19);
+		text-shadow: 0.5px 0.5px 0 grey;
+		.change-day{
+			a{
+				color: #eee;
+				text-shadow: 0.5px 0px 1 black;
+				&:hover{
+					color: #CCC;
+					text-shadow: 1.5px 1px 0 black;
+				}
+			}
+
+		}
+
+	}
+
+	.lodging{
+		// background-color: rgba(200, 20, 20, 0.7);
+
+	}
+
+	@media(min-width: 900px){
+		.day-header {
+			font-size: 2.2em;
+		}
+
+	}
+
+}
