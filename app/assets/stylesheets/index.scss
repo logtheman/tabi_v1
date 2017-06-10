@@ -1,3 +1,8 @@
+@import 'variables'; // colors, fonts etc...
+@import 'bourbon'; // http://bourbon.io/
+// @import 'mixins'; // custom mixins
+@import 'layouts'; // responsive grid and media queries
+
 
 html{
 
@@ -5,39 +10,58 @@ html{
 
 }
 
+*, *:after, *:before {
+	@include box-sizing(border-box);
+}
+
 body {
-	background-image: url('banner1_black_white.jpg'); 
-	// min-height: 500px;
-	min-width: 400px;
-	background-repeat:no-repeat;
-	background-size:100% auto;
+	min-width: 500px;
+	font-size: .7em;
 
 }
 
 // Navigation links 
 
-.nav-links{
-	a{
-		color: white;
-		text-shadow: 1.5px 1px 0 black;
-		&:hover{
-			color: lightblue;
-			text-shadow: 2.5px 1px 0 black;
-		}
-		&.active{
-			color: lightblue;
-		}
-	}
-	.title-header{
-		color:white;
-		text-shadow: 1px 0 0 black;
-		font-size: 3em;
-	}
+.navbar{
+	background-color: #61747e;
+	padding: 0px;
+	.list-inline{
+		margin: 0;
 
+	}
+	.nav-links{
+		font-size: 1.1rem;
+		a{
+			color: white;
+			text-shadow: 1.0px 1px 0 black;
+			&:hover{
+				color: lightblue;
+				text-shadow: 1.5px 1px 0 black;
+			}
+			&.active{
+				color: lightblue;
+			}
+		}
+		.title-header{
+			color:white;
+			text-shadow: 1px 0 0 black;
+			font-size: 3em;
+		}
+		.tagline{
+			color: #bfd4df;
+
+		}
+	}
 }
 
 // Opening banner, title and entry point
 .banner{
+	background-image: url('banner1_black_white.jpg'); 
+	background-repeat:no-repeat;
+	background-size:auto auto;
+	background-position: center; 
+	min-height: 1000px;
+
 	.open-title{
 		font-size: 6em;
 		color:black;
@@ -69,12 +93,7 @@ body {
 }
 
 @media(min-width: 900px){
-	body {
-		background-image: url('banner1_black_white.jpg'); 
-		background-repeat:no-repeat;
-		background-size:100% 100%;
-	  min-height: 700px
-	}
+
 
 }
 
@@ -84,6 +103,171 @@ body {
 .single-day-container{
 	background-color: white;
 	min-height: 400px;
+	padding-left: 10px;
+
+	.bottom-border{
+		border-bottom: 1px solid #777;
+	}
+
+	.icon-offset{
+		padding-left: $icon-offset + $icon-size;
+	}
+
+	.timeline-header{
+		padding: {
+			top: 5px;
+			left: 2.5em;
+			bottom: 0px;
+		}
+	}
+
+	.timeline {
+	  position: relative;
+	  padding: 2em 0;
+
+	  .activity-name{
+	  	font-weight: 500;
+	  	color: $activity-name-color;
+	  	font-size: 1.2em;
+	  }
+
+	  .activity-time{
+	  	font-weight: bold;
+	  	color: black;
+	  	font-size: 1.1em;
+
+	  }
+
+	  &::before {
+	  	/* this is the vertical line */
+	  	content: '';
+	  	position: absolute;
+	  	top: 0;
+	  	left: $timeline-offset;
+	  	height: 100%;
+	  	width: 4px;
+	  	background: darken($background, 5%);
+	  }
+	  a{
+	  	color: black;
+	  	&:hover{
+	  		text-decoration: underline;
+	  	}
+	  }
+
+	  .food{
+	  	background-color: $food-color;
+	  	border-bottom: 1.5px solid $food-border-color;
+	  	border-top: 1px solid $food-border-color;
+	  	&:hover{
+	  		background-color: $food-color-hover;
+	  	}	
+	  }
+
+	  .lodging{
+	  	background-color: $lodging-color;
+	  	border-bottom: 1.5px solid $lodging-border-color;
+	  	border-top: 1px solid $lodging-border-color;
+	  	&:hover{
+	  		background-color: $lodging-color-hover;
+	  	}	
+	  }
+
+	  .activity{
+	  	background-color: $activity-color;
+	  	border-bottom: 1.5px solid $activity-border-color;
+	  	border-top: 1px solid $activity-border-color;
+	  	&:hover{
+	  		background-color: $activity-color-hover;
+	  	}	
+	  }
+
+
+
+	}
+
+	.timeline-block {
+		position: relative;
+		margin: 2em 0;
+		min-height: $activity-min-height;
+		padding-top: 5px;
+		font-size: $activity-font-size;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		@include MQ(L) {
+			margin: 4em 0;
+
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.timeline-content {
+		position: relative;
+		margin-left: $timeline-offset * 2;
+		
+		.row:first-child{
+			padding-left: 1em;
+		}
+
+	}
+
+
+	.timeline-activity-marker{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: $icon-size;
+		height: $icon-size;
+		margin-left: $icon-offset;
+		border-radius: 50%;
+		// border: 1px solid rgba(#fff, .5);
+		box-shadow: 0 0 0 4px $color-3, inset 0 3px 0 rgba(#000, .08), 0 3px 0 4px rgba(#000, .10) ;
+	  z-index: 5;
+
+		i {
+
+			margin-left: 14px;
+			margin-top: 11px;
+			position: relative;
+			text-shadow: 0.5px 1px 0 grey;
+			color: white;
+
+		}
+
+		&.food {
+			background: $food-border-color;
+		}
+		&.activity {
+			background: $activity-border-color;
+			font-size: 1.3em;
+			i {
+				margin-left: 15px;	
+			}
+		}
+		&.lodging {
+			background: $lodging-border-color;
+			color: white;
+			top: 10px;
+			i {
+				margin-left: 13px;	
+			}
+		}
+
+	}
 
 
 	.day-header{
@@ -108,9 +292,32 @@ body {
 
 	}
 
-	.lodging{
-		// background-color: rgba(200, 20, 20, 0.7);
+	.add-activity-row{
+		min-height: $activity-min-height -10px;
+		background-color: $add-activity-color;
+		border-top: 1.5px solid grey;
+		border-bottom: 1.5px solid grey;
+		color: #484848;
+		opacity: 0.5;
+		.add-activity-icon{
+			margin-top: 5px;
+			opacity: 0.6;
+			font-size: 2em;
+			transition: all 0.5s;
+		}
+	}
 
+	.add-activity-row:hover{
+		min-height: $activity-min-height;
+		background-color: $add-activity-color-hover;
+		color: #212121;
+		opacity: 1;
+
+		.add-activity-icon{
+			opacity: 1;
+			font-size: 50px;
+
+		}
 	}
 
 	@media(min-width: 900px){
@@ -121,3 +328,23 @@ body {
 	}
 
 }
+
+/********************** Single Day Spaces ****************************************/
+.activity-spacer-1{
+	height: $activity-spacer-height;
+}
+.activity-spacer-2{
+	height: $activity-spacer-height * 2;
+}
+.activity-spacer-3{
+	height: $activity-spacer-height * 3;
+}
+.activity-spacer-4{
+	height: $activity-spacer-height * 4;
+}
+.activity-spacer-5{
+	height: $activity-spacer-height * 5;
+}
+
+
+

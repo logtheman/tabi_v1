@@ -1,0 +1,35 @@
+// colors
+
+$main-text: #7f8c97; // main text
+$link: #acb7c0; // anchor tags
+$background: #e9f0f5; // body background color
+
+$color-1: #303e49; // blue dark
+$color-2: #c03b44; // red
+$color-3: #ffffff; // white
+$food-color: rgba(117,206,102, 0.5); //#75ce66 green
+$food-color-hover: rgba(117,206,102, 0.2); //#75ce66 green
+$food-border-color: #4DB810; 
+$lodging-color: rgba(159,225,231, 0.5); // #9FE1E7;
+$lodging-color-hover: rgba(159,225,231, 0.2); // #9FE1E7;
+$lodging-border-color: #0BBCB2;
+$activity-color: rgba(255,173,70, 0.5); // #FFAD46;
+$activity-color-hover: rgba(255,173,70, 0.2); // #FFAD46;
+$activity-border-color: #d68c2f;
+$activity-name-color: #45494f;
+$add-activity-color: #e0e0e0;
+$add-activity-color-hover: #efefef;
+
+//icon sizing variables
+$icon-size: 50px;
+$icon-offset: 20px;
+$timeline-offset: 42px;
+$activity-min-height: 60px;
+$activity-spacer-height: 2px;
+
+$activity-font-size: 1.1em;
+
+// fonts 
+
+$primary-font: 'Droid Serif', serif;
+$secondary-font: 'Open Sans', sans-serif;
