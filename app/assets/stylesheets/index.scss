@@ -18,17 +18,28 @@ body {
 	min-width: 500px;
 	font-size: .7em;
 
+	.list-inline{
+		margin: 0;
+
+	}
+
 }
 
 // Navigation links 
 
 .navbar{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: $navbar-height;
+	z-index: 100;
 	background-color: #61747e;
-	padding: 0px;
-	.list-inline{
-		margin: 0;
+	box-shadow: 0px 2px 8px 1px rgba(94,94,94,0.19);
 
-	}
+	padding: 0px;
+
+
 	.nav-links{
 		font-size: 1.1rem;
 		a{
@@ -52,6 +63,11 @@ body {
 
 		}
 	}
+}
+
+.navbar-padding{
+	padding-bottom: $navbar-height;
+
 }
 
 // Opening banner, title and entry point
@@ -235,7 +251,7 @@ body {
 		margin-left: $icon-offset;
 		border-radius: 50%;
 		// border: 1px solid rgba(#fff, .5);
-		box-shadow: 0 0 0 4px $color-3, inset 0 3px 0 rgba(#000, .08), 0 3px 0 4px rgba(#000, .10) ;
+		box-shadow: 0 0 0 4px white, inset 0 3px 0 rgba(#000, .08), 0 3px 0 4px rgba(#000, .10) ;
 	  z-index: 5;
 
 		i {
@@ -268,6 +284,7 @@ body {
 		}
 
 	}
+
 
 
 	.day-header{
@@ -328,6 +345,18 @@ body {
 	}
 
 }
+
+/********************** Single Day Map Styles ****************************************/
+
+.single-day-container{
+
+
+	@media(min-width: 900px){
+
+	}
+
+}
+
 
 /********************** Single Day Spaces ****************************************/
 .activity-spacer-1{
