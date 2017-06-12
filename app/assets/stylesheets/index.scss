@@ -16,13 +16,12 @@ html{
 
 body {
 	min-width: 500px;
-	font-size: .7em;
+	font-size: 0.65em;
 
 	.list-inline{
 		margin: 0;
 
 	}
-
 }
 
 // Navigation links 
@@ -34,14 +33,14 @@ body {
 	width: 100%;
 	height: $navbar-height;
 	z-index: 100;
+	border-radius: 0;
 	background-color: #61747e;
 	box-shadow: 0px 2px 8px 1px rgba(94,94,94,0.19);
-
 	padding: 0px;
 
 
 	.nav-links{
-		font-size: 1.1rem;
+		font-size: 0.6rem;
 		a{
 			color: white;
 			text-shadow: 1.0px 1px 0 black;
@@ -63,6 +62,12 @@ body {
 
 		}
 	}
+
+	@media(min-width: 500px){
+		font-size: 0.8rem;
+
+	}
+
 }
 
 .navbar-padding{
@@ -296,7 +301,7 @@ body {
 		box-shadow: 0px 2px 8px 1px rgba(94,94,94,0.19);
 		text-shadow: 0.5px 0.5px 0 grey;
 		.change-day{
-			a{
+			.icon{
 				color: #eee;
 				text-shadow: 0.5px 0px 1 black;
 				&:hover{
@@ -349,7 +354,10 @@ body {
 /********************** Single Day Map Styles ****************************************/
 
 .single-day-container{
+	.map-column{
+		min-height: 500px;
 
+	}
 
 	@media(min-width: 900px){
 
@@ -357,23 +365,103 @@ body {
 
 }
 
+/********************** Form Styles ****************************************/
 
-/********************** Single Day Spaces ****************************************/
-.activity-spacer-1{
-	height: $activity-spacer-height;
-}
-.activity-spacer-2{
-	height: $activity-spacer-height * 2;
-}
-.activity-spacer-3{
-	height: $activity-spacer-height * 3;
-}
-.activity-spacer-4{
-	height: $activity-spacer-height * 4;
-}
-.activity-spacer-5{
-	height: $activity-spacer-height * 5;
+.form-group{
+	
+	font-size: 1.4em;
+	font-weight: 500;
+	color: #555;
+
 }
 
 
+/********************** Transitions ****************************************/
+.addActivity-enter {
+  opacity: 0.01;
+  transition: opacity 200ms ease-in;
 
+}
+
+.-enter.addActivity-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+
+}
+
+.addActivity-leave {
+  opacity: 1;
+  height: 100%;
+}
+
+.addActivity-leave.addActivity-leave-active {
+  opacity: 0.01;
+  height: 10%;
+  transition: all 300ms ease-in;
+}
+
+// .modal{
+// 		opacity: 0.01;
+// 	  display: inline-block;
+// 	  background-color: white;
+// 	  border-radius: 1;
+// 	  max-width: 500px;
+// 	  min-height: 300px;
+// 	  max-height: 80%;
+// 	  margin: 0 auto;
+// 	  padding: 30px;
+// 	  margin-top: $navbar-height; //banner height
+// 	  z-index: 101;
+//   	transition: all 300ms ease-in;
+
+	
+// }
+
+// .model-active{
+// 		opacity: 1;
+//   	transition: all 300ms ease-in;
+// }
+
+// .backdrop {
+//   position: fixed;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background-color: rgba(0,0,0,0.3);
+//   padding: 50;
+//   z-index: 100;
+// };
+
+
+.modal-content{
+	overflow-y: auto;
+	max-height: 400px;
+	min-width: 300px;
+
+	@media(min-width: 900px){
+		width: 800px;
+	} 
+
+	@media(min-height: 600px){
+		max-height: 550px;
+
+		@media(min-height: 800px){
+			max-height: 750px;
+			@media(min-height: 900px){
+				max-height: 850px;
+			}
+			@media(min-height: 1200px){
+				max-height: 1150px;
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+}
