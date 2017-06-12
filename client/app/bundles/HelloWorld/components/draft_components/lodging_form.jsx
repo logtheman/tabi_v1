@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, FieldGroup, Checkbox, Radio, Form, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-
+import Geosuggest from 'react-geosuggest';
 
 const LodgingForm = (props) =>{
 
@@ -14,17 +14,36 @@ const LodgingForm = (props) =>{
 		  );
 		}
 
+		function onSuggestSelect(suggest) {
+		  console.log(suggest);
+		}
+
+				    // <input type="text" className="form-control" id="hotelName" placeholder="i.e. Marriot" />
+
+
 		return(
 			<div>
 				<form>
 				  <div className="form-group">
 				    <label for="hotelName">Hotel Name</label>
-				    <input type="text" className="form-control" id="hotelName" placeholder="i.e. Marriot" />
+				    <Geosuggest
+				      placeholder="Start typing!"
+				      inputClassName="form-control"
+				      initialValue="NahaNa Hotel"
+				      onSuggestSelect={onSuggestSelect}
+				      location={new google.maps.LatLng(26.2144722, 127.6763)}
+				      radius="20" />
 				  </div>
 				  <div className="form-group">
 				    <label for="hotelAddress">Hotel Address</label>
-				    <input type="text" className="form-control" id="hotelAddress" placeholder="i.e. 780 Mission St, San Francisco, CA 94103" />
+
 				  </div>
+
+
+
+
+
+
 				  <div className="form-group">
 				    <label for="hotelURL">URL</label>
 				    <input type="text" className="form-control" id="hotelURL" placeholder="i.e. http://www.marriott.com/hotels/" />
@@ -32,11 +51,6 @@ const LodgingForm = (props) =>{
 				</form>
 		  <form>
 
-		    <FieldGroup
-		      id="formControlsText"
-		      label="Hotel URL"
-		      type="text"
-		    />
 		    <FieldGroup
 		      id="formControlsText"
 		      type="text"
@@ -50,13 +64,15 @@ const LodgingForm = (props) =>{
 		    <Radio checked readOnly>
 		      Radio
 		    </Radio>
-				<div className="col-6">
-					<label className="sr-only" htmlFor="tripStart">Check-in Date</label>
-			  	<input type="date" className="form-control travel-date-inputs"  id="tripStart" value="2017-05-19" placeholder="Start Date"/>
-			  </div>
-			  <div className="col-6">
-					<label className="sr-only" htmlFor="tripEnd">Check-out Date</label>
-	  	  	<input type="date" className="form-control travel-date-inputs" id="tripEnd" value="2017-05-30" placeholder="Choose a Date" />
+		    <div className="row">
+					<div className="col-3">
+						<label className="sr-only" htmlFor="tripStart">Check-in Date</label>
+				  	<input type="date" className="form-control travel-date-inputs"  id="tripStart" value="2017-05-19" placeholder="Start Date"/>
+				  </div>
+				  <div className="col-3">
+						<label className="sr-only" htmlFor="tripEnd">Check-out Date</label>
+		  	  	<input type="date" className="form-control travel-date-inputs" id="tripEnd" value="2017-05-30" placeholder="Choose a Date" />
+		  	  </div>
 	  	  </div>
 
 
