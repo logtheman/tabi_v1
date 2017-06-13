@@ -16,7 +16,7 @@ const BootstrapModal = (props) => {
 		    </Modal.Body>
 
 		    <Modal.Footer>
-		      <Button onClick={props.onClose}>Close</Button>
+		      <Button onClick={() => props.onClose('')}>Close</Button>
 		      <Button bsStyle="primary">Save changes</Button>
 		    </Modal.Footer>
 

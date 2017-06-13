@@ -36,12 +36,7 @@ const LodgingForm = (props) =>{
 				  </div>
 				  <div className="form-group">
 				    <label for="hotelAddress">Hotel Address</label>
-
 				  </div>
-
-
-
-
 
 
 				  <div className="form-group">

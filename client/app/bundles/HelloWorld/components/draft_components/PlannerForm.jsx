@@ -8,10 +8,9 @@ export default class PlannerForm extends React.Component{
 		super(props);
 		this.state = {
 			showOptions: true,
-			formType: '',
+			formType: props.type,
 			subType: '', //for secondary filtering question
 		}
-
 	}
 
 	handleTypeSelect(type){
@@ -25,24 +24,6 @@ export default class PlannerForm extends React.Component{
 	}
 
 	render(){
-		let formOptions = 
-			(<div className="text-center">
-		      <button className="btn btn-outline-info mr-2" onClick={() => this.handleTypeSelect('lodging')}>
-		        <i className="fa fa-bed fa-2x pr-2" aria-hidden="true"></i>
-		        Lodging
-		      </button>
-		      {' '}
-		      <button className="btn btn-outline-success mr-2" onClick={() => this.handleTypeSelect('food')}>
-		        <i className="fa fa-cutlery fa-2x pr-2" aria-hidden="true"></i>
-		        Food
-		      </button>
-		      {' '}
-		      <button className="btn btn-outline-warning mr-2" onClick={() => this.handleTypeSelect('activity')}>
-		        <i className="fa fa-map-marker fa-2x pr-2" aria-hidden="true"></i>
-		        Activity
-		      </button>
-				 </div>);
-
 
 		let subTypeContent = ''; 
 		let formContent = '';
@@ -50,7 +31,6 @@ export default class PlannerForm extends React.Component{
 			case 'lodging':
 				if(this.state.subType){
 					formContent = (<LodgingForm />);
-					formOptions = '';
 				}else{
 					subTypeContent = 
 						(<div className="text-center mt-3">
@@ -83,7 +63,6 @@ export default class PlannerForm extends React.Component{
 
 		return (
 			<div className="pb-2">
-				{formOptions}
 
 				{subTypeContent}
 				<br />

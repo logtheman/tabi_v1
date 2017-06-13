@@ -6,6 +6,7 @@ import DayTimeLine from './DayTimeLine'
 import MapContainer from './MapContainer'
 import BootstrapModal from './BootstrapModal'
 import PlannerForm from './PlannerForm'
+import AddActivity from './AddActivity'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import { StickyContainer, Sticky } from 'react-sticky'
 import FAKEDATA from './fake_data/day_data'
@@ -17,13 +18,17 @@ export default class SingleDay extends React.Component {
 		super(props);
 		this.state = {
 			dayNum: 1, //placeholder
-			showAddActivity: false,
+			showAddActivity: '',
+			activeActivityIndex: null, 
 			modalTitle: "What would you like to plan?"
 		}
 
 		this.handleChangeDay = this.handleChangeDay.bind(this); 
 		this.handleAddActivity = this.handleAddActivity.bind(this);
 		this.handleModalHeaderChange = this.handleModalHeaderChange.bind(this);
+		this.handleMouseEnterActivity = this.handleMouseEnterActivity.bind(this);
+		this.handleMouseLeaveActivity = this.handleMouseLeaveActivity.bind(this);
+
 	}
 
 	handleChangeDay(dayChange){
@@ -31,13 +36,25 @@ export default class SingleDay extends React.Component {
 		this.setState({dayNum: this.state.dayNum + dayChange});
 	}
 
-	handleAddActivity(){
-		this.setState({showAddActivity: !this.state.showAddActivity});	
+	handleAddActivity(type, title){
+		this.setState({showAddActivity: type});
+		this.setState({modalTitle: title});		
 	}
 
 	handleModalHeaderChange(newHeader){
 		this.setState({modalTitle: newHeader});
 	}
+
+	handleMouseEnterActivity(index){
+		this.setState({activeActivityIndex: index});
+		console.log("enter index: ", index);
+	}
+	handleMouseLeaveActivity(){
+		console.log("Leave index: ", this.state.activeActivityIndex);
+		this.setState({activeActivityIndex: null});
+	}
+
+
 
 	render(){
 		
@@ -46,7 +63,10 @@ export default class SingleDay extends React.Component {
 							onClose={this.handleAddActivity} 
 							title={this.state.modalTitle}
 							>
-						<PlannerForm titleChange={this.handleModalHeaderChange} />
+						<PlannerForm 
+							titleChange={this.handleModalHeaderChange} 
+							type={this.state.showAddActivity}
+							/>
 					</BootstrapModal>) : null;
 
 		return (
@@ -65,12 +85,21 @@ export default class SingleDay extends React.Component {
 									<DayTimeLine 
 										dayInfo={FAKEDATA[this.state.dayNum-1]}
 										handleAddActivity = {this.handleAddActivity}
+										handleMouseEnterActivity = {this.handleMouseEnterActivity}
+										handleMouseLeaveActivity = {this.handleMouseLeaveActivity}
+
 										/>
 								</div>
 							</div>
 						</div>
 						<div className="col-md-5 map-column">
-							<MapContainer locations={FAKEDATA[this.state.dayNum-1]}/>
+							<div className="align-center">
+								<AddActivity viewType="singleDay" handleAddActivity={this.handleAddActivity}/>
+							</div>
+							<MapContainer 
+								locations={FAKEDATA[this.state.dayNum-1]}
+								activeLocation={this.state.activeActivityIndex}
+								/>
 						</div>
 					</div>
 				</StickyContainer>
@@ -78,18 +107,3 @@ export default class SingleDay extends React.Component {
 		);
 	}
 }
-
- // <CSSTransitionGroup
-//   transitionName="addActivity"
-//   transitionEnterTimeout={300}
-//   transitionLeaveTimeout={500} >
-
-// </CSSTransitionGroup>
-
-// <Modal 
-// 	key="activityModal"
-//  		show={this.state.showAddActivity}
-//  	  onClose={this.handleAddActivity}
-//  	  >
-//  	  	<PlannerForm type="lodging" />
-//  	</Modal>

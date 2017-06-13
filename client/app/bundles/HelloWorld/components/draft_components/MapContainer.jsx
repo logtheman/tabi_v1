@@ -20,7 +20,10 @@ export default class MapContainer extends React.Component{
 	render(){
 		return(
 			<div style={{height: "60%", marginTop: '10px', marginRight: '10px', marginLeft: '10px', border: '1px solid black', minHeight: '500px'}}>
-				<SimpleMap locations={this.props.locations} />
+				<SimpleMap 
+				locations={this.props.locations} 
+				activeLocation={this.props.activeLocation}
+				/>
 			</div>
 		);
 	}

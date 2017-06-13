@@ -15,18 +15,21 @@ export default class SimpleMap extends Component {
 			zoom: 10,
 		}
 
-		this.onFocus = this.onFocus.bind(this);
-	}
-
-	onFocus(){
-		
-
 	}
 
   render() {
-
+  	let center = {
+  		lat: 26.2144722,
+  		lng: 127.6763,
+  	}
+  	console.log('active:', this.props.activeLocation);
   	const Markers = this.props.locations &&
   	  this.props.locations.map((marker, index) => {
+  	  	if(index === this.props.activeLocation){
+  	  		center.lat = marker.lat;
+  	  		center.lng = marker.lng;
+  	  	}
+
   	    return (
   	    	<SimpleMarker
 	  	      // required props
@@ -42,9 +45,10 @@ export default class SimpleMap extends Component {
   	  }
   	);
 
+
     return (
       <GoogleMapReact
-        defaultCenter={this.state.center}
+        center={center}
         defaultZoom={this.state.zoom}
       >
       	{Markers}
