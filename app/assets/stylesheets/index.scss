@@ -329,7 +329,7 @@ body {
 /********************** Single Day Map Styles ****************************************/
 
 .single-day-container{
-	
+
 	.map-column{
 		min-height: 500px;
 		.add-activity-buttons{
@@ -350,7 +350,10 @@ body {
 
 	font-size: 1.4em;
 	font-weight: 500;
-	color: #555;
+	label{
+		color: $form-label-color;
+
+	}
 
 }
 
