@@ -6,7 +6,7 @@
 
 html{
 
-	background-color: #dee1e2;
+	background-color: white;
 
 }
 
@@ -328,27 +328,47 @@ body {
 
 /********************** Single Day Map Styles ****************************************/
 
-.single-day-container{
 
 	.map-column{
 		min-height: 500px;
 		.add-activity-buttons{
+			border: 2px solid $add-activity-border;
+			background-color: $add-activity-background;
+			border-radius: 10px;
+			margin: 1em;
+		}
+
+		@media(min-width: 900px){
 
 		}
 
+
 	}
 
-	@media(min-width: 900px){
 
+
+
+
+/********************** Form Styles ****************************************/
+
+form{
+	.highlight{
+		color: $form-highlight-color;
+		font-size: 0.9em;
 	}
 
 }
 
-/********************** Form Styles ****************************************/
+
+.modal-header{
+	min-height: 40px;
+	background-color: $form-header-background-color;
+
+}
 
 .form-group{
 
-	font-size: 1.4em;
+	font-size: 1.6em;
 	font-weight: 500;
 	label{
 		color: $form-label-color;

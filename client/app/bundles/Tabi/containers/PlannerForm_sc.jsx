@@ -1,6 +1,8 @@
 import React from 'react'
 import { Radio, FormGroup, Button } from 'react-bootstrap'
-import LodgingForm from '../components/single_day_components/LodgingForm_dc'
+import LodgingForm from './LodgingForm_sc'
+import FoodForm from './FoodForm_sc'
+
 
 
 export default class PlannerForm extends React.Component{
@@ -30,7 +32,11 @@ export default class PlannerForm extends React.Component{
 		switch(this.state.formType){
 			case 'lodging':
 				if(this.state.subType){
-					formContent = (<LodgingForm />);
+					formContent = (
+						<LodgingForm 
+							onClose={this.props.onClose}
+							lodgingType={this.state.subType}
+						/>);
 				}else{
 					subTypeContent = 
 						(<div className="text-center mt-3">
@@ -44,7 +50,7 @@ export default class PlannerForm extends React.Component{
 				        AirBnB
 				      </button>
 				      {' '}
-				      <button className="btn btn-outline-info mr-2" onClick={() => this.handleSubTypeSelect('Other')}>
+				      <button className="btn btn-outline-info mr-2" onClick={() => this.handleSubTypeSelect('Other Lodging')}>
 				        <i className="fa fa-question fa-2x pr-2" aria-hidden="true"></i>
 				        Other
 				      </button>
@@ -52,7 +58,27 @@ export default class PlannerForm extends React.Component{
 				}
 				break;
 			case 'food':
-				// formContent = (<LodgingForm />);
+				if(this.state.subType){
+					formContent = (
+						<FoodForm 
+							onClose={this.props.onClose}
+							foodType={this.state.subType}
+						/>);
+				}else{
+					subTypeContent = 
+						(<div className="text-center mt-3">
+				      <button className="btn btn-outline-success mr-2" onClick={() => this.handleSubTypeSelect('Restaurant')}>
+				        <i className="fa fa-cutlery fa-2x pr-2" aria-hidden="true"></i>
+				        Restaurant
+				      </button>
+				      {' '}
+				      <button className="btn btn-outline-success mr-2" onClick={() => this.handleSubTypeSelect('Other Meal ')}>
+				        <i className="fa fa-question fa-2x pr-2" aria-hidden="true"></i>
+				        Other
+				      </button>
+
+						 </div>);
+				}
 				break;
 			default:
 		}

@@ -24,13 +24,20 @@ export default class PlannerForm extends React.Component{
 	}
 
 	render(){
+		console.log("subType: ", this.state.subType);
 
 		let subTypeContent = ''; 
 		let formContent = '';
 		switch(this.state.formType){
 			case 'lodging':
 				if(this.state.subType){
-					formContent = (<LodgingForm />);
+					console.log("onClose: ", this.props.onClose);
+
+					formContent = (
+						<LodgingForm 
+							onClose={this.props.onClose}
+							lodgingType={this.state.subtype}
+						/>);
 				}else{
 					subTypeContent = 
 						(<div className="text-center mt-3">
@@ -57,15 +64,10 @@ export default class PlannerForm extends React.Component{
 			default:
 		}
 
-
-
-
-
 		return (
 			<div className="pb-2">
 
 				{subTypeContent}
-				<br />
 				{formContent}
 
 			</div>

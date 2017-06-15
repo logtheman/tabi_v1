@@ -22,7 +22,6 @@ export default class SimpleMap extends Component {
   		lat: 26.2144722,
   		lng: 127.6763,
   	}
-  	console.log('active:', this.props.activeLocation);
   	const Markers = this.props.locations &&
   	  this.props.locations.map((marker, index) => {
   	  	if(index === this.props.activeLocation){

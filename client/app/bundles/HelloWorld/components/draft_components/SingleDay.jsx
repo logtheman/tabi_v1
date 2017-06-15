@@ -47,10 +47,8 @@ export default class SingleDay extends React.Component {
 
 	handleMouseEnterActivity(index){
 		this.setState({activeActivityIndex: index});
-		console.log("enter index: ", index);
 	}
 	handleMouseLeaveActivity(){
-		console.log("Leave index: ", this.state.activeActivityIndex);
 		this.setState({activeActivityIndex: null});
 	}
 

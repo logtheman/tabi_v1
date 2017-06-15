@@ -42,6 +42,16 @@ const config = {
         },
       },
       {
+        test: /\.scss$/,
+        use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+        }, {
+            loader: "css-loader" // translates CSS into CommonJS
+        }, {
+            loader: "sass-loader" // compiles Sass to CSS
+        }]
+      },
+      {
         test: /\.jsx?$/,
         use: 'babel-loader',
         exclude: /node_modules/,
@@ -52,6 +62,10 @@ const config = {
                 {
                     test: /\.css$/,
                     loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
+                },
+                {
+                    test: /\.scss$/,
+                    loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'sass-loader' })
                 },
                 // Optionally extract less files
                 // or any other compile-to-css language

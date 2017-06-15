@@ -6,7 +6,7 @@ const AddAcivity = (props) => {
 			<div className="add-activity-buttons text-center" >
 				<div className={`${props.viewType}`} >
 					<div className="text-center py-1">
-						<h4>Add: </h4>
+						<div>Add to Plan: </div>
 			      <button className="btn btn-outline-info mr-2" onClick={() => props.handleAddActivity('lodging', 'Type of Lodging:')} >
 			        <i className="fa fa-bed fa-2x pr-2 add-activity-icon" aria-hidden="true"></i>
 			        Lodging

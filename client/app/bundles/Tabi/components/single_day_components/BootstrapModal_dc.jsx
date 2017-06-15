@@ -7,18 +7,16 @@ const BootstrapModal = (props) => {
 	return (
 		<div className="static-modal" >
 		  <Modal.Dialog className="mt-3">
-		    <Modal.Header className="pt-3">
+		    <Modal.Header className="pt-3 modal-header">
 		      <Modal.Title>{props.title}</Modal.Title>
+		      <Button onClick={() => props.onClose('')} bsStyle="danger">X</Button>
 		    </Modal.Header>
 
-		    <Modal.Body>
+		    <Modal.Body className="pt-0">
 		    	{props.children}
 		    </Modal.Body>
 
-		    <Modal.Footer>
-		      <Button onClick={() => props.onClose('')}>Close</Button>
-		      <Button bsStyle="primary">Save changes</Button>
-		    </Modal.Footer>
+
 
 		  </Modal.Dialog>
 		</div>

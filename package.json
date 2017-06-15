@@ -17,6 +17,7 @@
     "react-bootstrap": "^0.31.0",
     "react-controllable": "^0.1.1",
     "react-geosuggest": "^2.2.0",
-    "react-google-maps": "^6.3.0"
+    "react-google-maps": "^6.3.0",
+    "react-tooltip": "^3.3.0"
   }
 }

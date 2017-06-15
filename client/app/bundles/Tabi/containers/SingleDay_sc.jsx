@@ -60,7 +60,12 @@ export default class SingleDay extends React.Component {
 
 
 	render(){
-		
+		const center = {
+			lat: FAKEDATA[this.state.dayNum-1][0].lat,
+			lng: FAKEDATA[this.state.dayNum-1][0].lng
+		}
+
+
 		const displayModal = this.state.showAddActivity ?
 					(<BootstrapModal 
 							onClose={this.handleAddActivity} 
@@ -69,6 +74,7 @@ export default class SingleDay extends React.Component {
 						<PlannerForm 
 							titleChange={this.handleModalHeaderChange} 
 							type={this.state.showAddActivity}
+							onClose={this.handleAddActivity}
 							/>
 					</BootstrapModal>) : null;
 
@@ -103,6 +109,7 @@ export default class SingleDay extends React.Component {
 								<SimpleMap 
 								locations={FAKEDATA[this.state.dayNum-1]}
 								activeLocation={this.state.activeActivityIndex}
+								center={center}
 								/>
 							</div>
 						</div>
