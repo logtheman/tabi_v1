@@ -35,9 +35,9 @@ export default class FoodForm extends React.Component{
 			let addressInput = '';
 			console.log(this.props);
 
-			switch (this.props.foodType){
-				case 'Restaurant':
-					nameType = 'Restaurant';
+			switch (this.props.activityType){
+				case '':
+					nameType = 'Activity';
 					addressInput = (<div className="highlight">{this.state.address}</div>);
 					break;
 				// case 'AirBnB':
@@ -55,47 +55,12 @@ export default class FoodForm extends React.Component{
 		return(
 			<div>
 				<form>
-						<div className="form-group"> Type: </div>
-		    	  <div className="row">
-		    	  	<div className="ml-2 btn-group form-group" role="group" aria-label="Basic example">
-								<label className="custom-control custom-radio ml-1">
-								  <input id="breakfast" name="radio" type="radio" className="custom-control-input" />
-								  <span className="custom-control-indicator"></span>
-								  <span className="custom-control-description">Breakfast</span>
-								</label>
-								<label className="custom-control custom-radio">
-								  <input id="lunch" name="radio" type="radio" className="custom-control-input" />
-								  <span className="custom-control-indicator"></span>
-								  <span className="custom-control-description">Lunch</span>
-								</label>
-								<label className="custom-control custom-radio">
-								  <input id="dinner" name="radio" type="radio" className="custom-control-input" />
-								  <span className="custom-control-indicator"></span>
-								  <span className="custom-control-description">Dinner</span>
-								</label>
-								<label className="custom-control custom-radio">
-								  <input id="snack" name="radio" type="radio" className="custom-control-input" />
-								  <span className="custom-control-indicator"></span>
-								  <span className="custom-control-description">Snack</span>
-								</label>
-								<label className="custom-control custom-radio">
-								  <input id="drinks" name="radio" type="radio" className="custom-control-input" />
-								  <span className="custom-control-indicator"></span>
-								  <span className="custom-control-description">Drinks</span>
-								</label>
-	  	    	  </div>
-		    	  </div>
 
-				  <div className="form-group">
-				    <label htmlFor="name">{nameType} Name:</label>
-				    <Geosuggest
-				      placeholder="Start typing!"
-				      inputClassName="form-control"
-				      initialValue="やんばるダイニング 松の古民家"
-				      onSuggestSelect={this.onSuggestSelect}
-				      location={new google.maps.LatLng(26.2144722, 127.6763)}
-				      radius="20" />
-				  </div>
+					<div className="form-group">
+					  <label htmlFor="activityType">Activity Type:</label>
+					  <input type="text" className="form-control" id="activityType" placeholder="" />
+					</div>
+
 				  <div className="form-group">
 				    <label htmlFor="address">{nameType} Address: </label>
 				    {' '} {addressInput}

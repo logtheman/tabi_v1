@@ -4,11 +4,11 @@ import ReactTooltip from 'react-tooltip'
 const AddAcivity = (props) => {
 
 	return (
-			<div className="add-activity-buttons text-center" >
+			<div className="add-activity-buttons button-container text-center" >
 				<div className={`${props.viewType}`} >
 					<div className="text-center py-1">
 						<h3><small className="text-muted">Add to Plan:</small> </h3>
-			      <button data-for="lodging" data-tip="true" className="btn btn-outline-info mr-2" onClick={() => props.handleAddActivity('lodging', 'Type of Lodging:')} >
+			      <button data-for="lodging" data-tip="true" className="btn btn-outline-info btn-sm mr-2 ml-2 mb-1" onClick={() => props.handleAddActivity('lodging', 'Type of Lodging:')} >
 			        <i className="fa fa-bed fa-2x pr-2 add-activity-icon" aria-hidden="true"></i>
 			        Lodging
 			      </button>
@@ -17,7 +17,7 @@ const AddAcivity = (props) => {
 			      </ReactTooltip>
 
 			      {' '}
-			      <button data-for="food" data-tip="true" className="btn btn-outline-success mr-2" onClick={() => props.handleAddActivity('food', 'Type of meal plan:')}>
+			      <button data-for="food" data-tip="true" className="btn btn-outline-success btn-sm mr-2 mb-1" onClick={() => props.handleAddActivity('food', 'Type of meal plan:')}>
 			        <i className="fa fa-cutlery fa-2x pr-2 add-activity-icon" aria-hidden="true"></i>
 			        Food
 			      </button>
@@ -26,10 +26,22 @@ const AddAcivity = (props) => {
 			      </ReactTooltip>
 
 			      {' '}
-			      <button className="btn btn-outline-warning mr-2" >
+			      <button data-for="activity" data-tip="true" className="btn btn-outline-warning btn-sm mr-2 mb-1" onClick={() => props.handleAddActivity('activity', 'Activity Information:')}>
 			        <i className="fa fa-map-marker fa-2x pr-2 add-activity-icon" aria-hidden="true"></i>
 			        Activity
 			      </button>
+			      <ReactTooltip id='activity' type="dark" effect="solid" >
+			      	<span>Plan a tour, museum or any other general activity and add a time and place.</span>
+			      </ReactTooltip>
+
+			      {' '}
+			      <button data-for="flight" data-tip="true" className="btn btn-outline-danger btn-sm mr-2 mb-1" onClick={() => props.handleAddActivity('flight', 'Flight Information:')}>
+			        <i className="fa fa-plane fa-2x pr-2 add-activity-icon" aria-hidden="true"></i>
+			        Flight
+			      </button>
+
+
+
 					 </div>
 				</div>
 			</div>

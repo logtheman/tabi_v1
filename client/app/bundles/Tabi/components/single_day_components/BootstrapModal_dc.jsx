@@ -2,25 +2,28 @@ import React from 'react'
 import { Button, Modal } from 'react-bootstrap';
 
 
-const BootstrapModal = (props) => {
+export default class BootstrapModal extends React.Component{
 
-	return (
-		<div className="static-modal" >
-		  <Modal.Dialog className="mt-3">
-		    <Modal.Header className="pt-3 modal-header">
-		      <Modal.Title>{props.title}</Modal.Title>
-		      <Button onClick={() => props.onClose('')} bsStyle="danger">X</Button>
-		    </Modal.Header>
+	render(){
+		return (
+			<div className="static-modal" >
+			  <Modal.Dialog className="mt-3">
+			    <Modal.Header className="pt-3 modal-header">
+			      <Modal.Title>{this.props.title}</Modal.Title>
+			      <Button onClick={() => this.props.onClose('')} bsStyle="danger">X</Button>
+			    </Modal.Header>
 
-		    <Modal.Body className="pt-0">
-		    	{props.children}
-		    </Modal.Body>
+			    <Modal.Body className="pt-0">
+			    	{this.props.children}
+			    </Modal.Body>
 
+			    {this.props.footer}
 
+			  </Modal.Dialog>
+			</div>
+		);
 
-		  </Modal.Dialog>
-		</div>
-	);
+	}
 }
 
-export default BootstrapModal;
+// export default BootstrapModal;

@@ -114,6 +114,34 @@ body {
 	}
 }
 
+
+.button-container{
+
+		
+		.new-trip, .edit-trip, .explore-trips{
+			border-radius: 2px;;
+
+		}
+
+		.new-trip, .lodging{
+			color: $lodging-border-color;
+			border-color: $lodging-border-color;
+			&:hover{
+				color: black;
+				background-color: $lodging-color;
+			}
+		}
+		.edit-trip, .food{
+			color: $food-border-color;
+			border-color: $food-border-color;
+			&:hover{
+				color: black;
+				background-color: $food-color;
+			}
+		}
+
+}
+
 @media(min-width: 900px){
 
 
@@ -447,84 +475,101 @@ form{
   background: #ccc;
 }
 
-/********************** Transitions ****************************************/
-.addActivity-enter {
-  opacity: 0.01;
-  transition: opacity 200ms ease-in;
+/********************** Modal CSS ****************************************/
+// // .addActivity-enter {
+// //   opacity: 0.01;
+// //   transition: opacity 200ms ease-in;
 
-}
+// // }
 
-.-enter.addActivity-enter-active {
-  opacity: 1;
-  transition: opacity 200ms ease-in;
+// // .-enter.addActivity-enter-active {
+// //   opacity: 1;
+// //   transition: opacity 200ms ease-in;
 
-}
+// // }
 
-.addActivity-leave {
-  opacity: 1;
-  height: 100%;
-}
+// // .addActivity-leave {
+// //   opacity: 1;
+// //   height: 100%;
+// // }
 
-.addActivity-leave.addActivity-leave-active {
-  opacity: 0.01;
-  height: 10%;
-  transition: all 300ms ease-in;
-}
+// // .addActivity-leave.addActivity-leave-active {
+// //   opacity: 0.01;
+// //   height: 10%;
+// //   transition: all 300ms ease-in;
+// // }
 
-// .modal{
-// 		opacity: 0.01;
-// 	  display: inline-block;
-// 	  background-color: white;
-// 	  border-radius: 1;
-// 	  max-width: 500px;
-// 	  min-height: 300px;
-// 	  max-height: 80%;
-// 	  margin: 0 auto;
-// 	  padding: 30px;
-// 	  margin-top: $navbar-height; //banner height
-// 	  z-index: 101;
-//   	transition: all 300ms ease-in;
+// // .modal{
+// // 		opacity: 0.01;
+// // 	  display: inline-block;
+// // 	  background-color: white;
+// // 	  border-radius: 1;
+// // 	  max-width: 500px;
+// // 	  min-height: 100px;
+// // 	  max-height: 80%;
+// // 	  margin: auto;
+// // 	  // padding: 30px;
+// // 	  margin-top: $navbar-height; //banner height
+// // 	  // z-index: 101;
+// //   	transition: all 300ms ease-in;
 
+// //   	.modal-container{
+// // 		  padding: 30px;
+
+// //   	}
+
+// //   	.close-button{
+// //   		border-radius: 0;
+// //   		border: none;
+// //   		font-size: 1.2em;
+// //   		padding-right: 10px;
+// //   		&:hover{
+// //   			color: red;
+// //   		}
+// //   	}
 	
+// // }
+
+// // .model-active{
+// // 		opacity: 1;
+// //   	transition: all 300ms ease-in;
+// // }
+
+// // .backdrop {
+// //   position: fixed;
+// //   top: 0;
+// //   bottom: 0;
+// //   left: 0;
+// //   right: 0;
+// //   background-color: rgba(0,0,0,0.3);
+// //   padding: 50;
+// //   z-index: 100;
+// // };
+
+
+// .modal-content{
+// 	overflow-y: auto;
+// 	max-height: 400px;
+// 	min-width: 300px;
+
+// 	@media(min-width: 900px){
+// 		width: 800px;
+// 	} 
+
+// 	@media(min-height: 600px){
+// 		max-height: 550px;
+
+// 		@media(min-height: 700px){
+// 			max-height: 650px;
+// 		}
+// 		@media(min-height: 800px){
+// 			max-height: 750px;
+// 			@media(min-height: 900px){
+// 				max-height: 850px;
+// 			}
+// 			@media(min-height: 1200px){
+// 				max-height: 1150px;
+// 			}
+// 		}
+// 	}
 // }
-
-// .model-active{
-// 		opacity: 1;
-//   	transition: all 300ms ease-in;
-// }
-
-// .backdrop {
-//   position: fixed;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   background-color: rgba(0,0,0,0.3);
-//   padding: 50;
-//   z-index: 100;
-// };
-
-
-.modal-content{
-	overflow-y: auto;
-	max-height: 400px;
-	min-width: 300px;
-
-	@media(min-width: 900px){
-		width: 800px;
-	} 
-
-	@media(min-height: 600px){
-		max-height: 550px;
-
-		@media(min-height: 800px){
-			max-height: 750px;
-			@media(min-height: 900px){
-				max-height: 850px;
-			}
-			@media(min-height: 1200px){
-				max-height: 1150px;
-			}
-		}
-	}
-}

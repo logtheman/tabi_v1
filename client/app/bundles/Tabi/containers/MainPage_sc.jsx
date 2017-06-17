@@ -3,6 +3,9 @@ import * as api from '../../utils/utils'
 import {
   Link
 } from 'react-router-dom';
+import BootstrapModal from '../components/single_day_components/BootstrapModal_dc'
+import { Modal, ModalHeader } from 'elemental' 
+import NewTripForm from './NewTripForm_sc'
 
 
 export default class MainPage extends React.Component {
@@ -18,7 +21,6 @@ export default class MainPage extends React.Component {
 
 	handleNewTrip(){
 		this.setState({newTrip: !this.state.newTrip});
-		// console.log("date: ", api.getDate());
 	}
 
 	render(){
@@ -26,9 +28,18 @@ export default class MainPage extends React.Component {
 			<div className="container pt-3">
 			  <div className="center-block button-container">
 			    <div className="open-buttons ">
-			      <button type="button" onClick={this.handleNewTrip} className="btn btn-outline-primary btn-block mt-4">Plan a trip</button>
-			      <button type="button" className="btn btn-outline-success btn-block mt-3">Edit exiting trip</button>
-			      <button type="button" className="btn btn-outline-danger btn-block mt-3">Explore Trips</button>
+			      <button type="button" onClick={this.handleNewTrip} className="btn btn-outline-primary btn-block new-trip mt-4">
+			      	<i className="fa fa-plus " aria-hidden="true"></i>
+			      	{' '}Plan a trip
+			      </button>
+			      <button type="button" className="btn btn-outline-success btn-block edit-trip mt-3">
+			      	<i className="fa fa-pencil-square-o " aria-hidden="true"></i>
+			      	{' '}Edit exiting trip
+			      </button>
+			      <button type="button" className="btn btn-outline-danger btn-block explore-trips mt-3">
+			      	<i className="fa fa-eye" aria-hidden="true"></i>
+			      	{' '}Explore trips
+			      </button>
 			    </div>    
 			  </div>
 
@@ -59,7 +70,7 @@ export default class MainPage extends React.Component {
 	           </div>
 	           	<div className="row mt-1	">
 	           	  <div className="col-md-6 offset-md-3">
-	           	  	<Link to="/day_view" >
+	           	  	<Link to="/single_day" >
 	           	  		<button type="button" className="btn btn-outline-primary btn-block start-trip-button ">Plan Trip!</button>
 	           	 		</Link>
 	           	 	</div>
@@ -71,7 +82,19 @@ export default class MainPage extends React.Component {
        </div> //end of container
 		);
 
-		const showOptions = this.state.newTrip ? dateRange : selectionButtons;
+
+		const displayModal = this.state.newTrip ?
+					(<Modal
+							isOpen={this.state.newTrip} 
+							onCancel={this.handleNewTrip} backdropClosesModal
+							>
+							<ModalHeader text="Start New Trip:" showCloseButton onClose={this.handleNewTrip} />
+						<NewTripForm 
+							titleChange={this.handleModalHeaderChange} 
+							onClose={this.handleNewTrip}
+							/>
+					</Modal>) : null;
+		// const showOptions = this.state.newTrip ? dateRange : selectionButtons;
 
 		return (
 			  <div className="banner text-center mb-3">
@@ -79,7 +102,8 @@ export default class MainPage extends React.Component {
 				    <h1 className="display-1"><strong>Tabi</strong></h1>
 				    <h3 className="mt-3 text-shadow">Plan Your Journey</h3>
 				  </div>
-				  	{showOptions}
+				  	{selectionButtons}
+				  	{displayModal}
 
 			  </div>
 

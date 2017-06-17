@@ -2,6 +2,10 @@ import React from 'react'
 import { Radio, FormGroup, Button } from 'react-bootstrap'
 import LodgingForm from './LodgingForm_sc'
 import FoodForm from './FoodForm_sc'
+import ActivityForm from './ActivityForm_sc'
+import FlightForm from './FlightForm_sc'
+
+
 
 
 
@@ -81,6 +85,11 @@ export default class PlannerForm extends React.Component{
 				}
 				break;
 			default:
+				formContent = (
+					<FlightForm 
+						onClose={this.props.onClose}
+						activityType={this.state.subType}
+					/>);
 		}
 
 
