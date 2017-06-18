@@ -9,25 +9,25 @@ const FlightResultsList = (props) => {
 			flight.slice[0].segment.map((segment, j) => {
 				return(
 					segment.leg.map((leg, k) => {
-						let flightChoiceNum = i ? `#${i+1}` : 'Conn.';
-						let trClass = 'single-leg';
-						if(i && props.flights[i].slice[0].segment.length > 1){
-							trClass = 'multi-leg';
+						const flightIndex = props.flights.indexOf(flight); //retrieve index as variable i shows null on the second leg
+						let flightChoiceNum = `#${i+1}`; 
+						let trClass = 'single-leg'; //default styles
+						if(props.flights[flightIndex].slice[0].segment.length > 1){ //if multi leg flight
+							trClass = 'multi-leg'; //style both legs 
 							if(j > 0){
-								if(props.flights[i].slice[0].segment.length === j-1){
-									trClass += 'bottom-border';
+								flightChoiceNum = 'Conn.'; //after the first leg row, indicate that this is a connection
+								if(props.flights[flightIndex].slice[0].segment.length === (j-1)){
+									trClass += 'bottom-border'; //if the last leg add a border
 								}
 							}else{
-								trClass += ' top-border';
+								trClass += ' top-border'; //first leg
 							}
 						}else{
-							trClass += ' top-border bottom-border';
+							trClass += ' top-border bottom-border'; //single leg flights
 						}
-						if(i = props.selectedFlight){
+						if(flightIndex === props.selectedFlight){
 							trClass += ' selected-flight';
-							console.log('add selected flight');
 						}
-							console.log('i: ', i);
 
 						return(
 							<tr key={i + j + k} className={trClass} onClick={() => props.onSelectFlight(i)}>
@@ -60,7 +60,7 @@ const FlightResultsList = (props) => {
 					<th>Arrival:</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody className="flight-options">
 				{tableBody}
 			</tbody>	
 		</table>
@@ -68,32 +68,3 @@ const FlightResultsList = (props) => {
 }
 
 export default FlightResultsList;
-
-// let flightOptions = this.state.searchResults.trips.tripOptionmap((n, i) => {
-// 	return (
-// 		<tr key={i}>
-// 			<td>{'#'}{i}</td>
-// 			<td>{n.slice[0].segment[0].leg[0].operatingDisclosure}</td>
-// 			<td>{n.slice[0].segment[0].leg[0].origin}</td>
-// 			<td>{api.getDateString(n.slice[0].segment[0].leg[0].departureTime)}</td>
-// 			<td>{n.slice[0].segment[0].leg[0].destination}</td>
-// 			<td>{api.getDateString(n.slice[0].segment[0].leg[0].arrivalTime)}</td>
-// 		</tr>
-// 	);
-
-// });
-// let tableBody = (<tbody>{flightOptions}</tbody>);
-// results = (<table className="table table-striped">
-// 						<thead>
-// 							<tr>
-// 								<th>Option:</th>
-// 								<th>Carrier:</th>
-// 								<th>From:</th>
-// 								<th>Depature:</th>
-// 								<th>To:</th>
-// 								<th>Arrival:</th>
-//   						</tr>
-//   					</thead>
-//   						{tableBody}
-
-// 					</table>

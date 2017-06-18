@@ -496,24 +496,27 @@ form{
 
 /********************** Flights Table CSS ****************************************/
 
-.multi-leg{
-	background: #e0e0eb;
-}
+.flight-options{
+	border: none;
+	.multi-leg{
+		background: #e0e0eb;
+	}
 
-.single-leg:hover, .multi-leg:hover{
-	background: #e2f1fc
-}
+	.single-leg:hover, .multi-leg:hover{
+		background: $selected-flight-row;
+	}
 
-.top-border{
-	border-top: 1px solid black;
-}
+	.top-border{
+		border-top: 1px solid black;
+	}
 
-.bottom-border{
-	border-bottom: 1px solid black;
-}
+	.bottom-border{
+		border-bottom: 1px solid black;
+	}
 
-.selected-flight{
-	background-color: red;
+	.selected-flight{
+		background-color: $selected-flight-row;
+	}
 }
 
 
