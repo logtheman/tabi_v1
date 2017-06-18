@@ -1,7 +1,6 @@
 //External libraries
 import React from 'react'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import { StickyContainer, Sticky } from 'react-sticky'
 
 //Dumb Components
 import NavBanner from '../components/single_day_components/NavBanner_dc'
@@ -80,7 +79,6 @@ export default class SingleDay extends React.Component {
 
 		return (
 			<div>
-				<StickyContainer >
 					{displayModal}
 					<div className="row navbar-padding">
 						<NavBanner />
@@ -114,7 +112,6 @@ export default class SingleDay extends React.Component {
 							</div>
 						</div>
 					</div>
-				</StickyContainer>
 			</div>
 		);
 	}

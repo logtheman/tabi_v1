@@ -21,3 +21,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "webpack")
 Rails.application.config.assets.precompile += %w( index.css )
 Rails.application.config.assets.precompile += %w( font-awesome/css/font-awesome.min.css )
+

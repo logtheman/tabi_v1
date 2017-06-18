@@ -4,8 +4,9 @@ import {
   Link
 } from 'react-router-dom';
 import BootstrapModal from '../components/single_day_components/BootstrapModal_dc'
-import { Modal, ModalHeader } from 'elemental' 
 import NewTripForm from './NewTripForm_sc'
+import FlightForm from './FlightForm_sc'
+
 
 
 export default class MainPage extends React.Component {
@@ -84,16 +85,17 @@ export default class MainPage extends React.Component {
 
 
 		const displayModal = this.state.newTrip ?
-					(<Modal
-							isOpen={this.state.newTrip} 
-							onCancel={this.handleNewTrip} backdropClosesModal
+					(<BootstrapModal 
+							onClose={this.handleNewTrip} 
+							title={'Start New Trip'}
+							topMargin={'100px'}
 							>
-							<ModalHeader text="Start New Trip:" showCloseButton onClose={this.handleNewTrip} />
-						<NewTripForm 
+						<FlightForm 
 							titleChange={this.handleModalHeaderChange} 
 							onClose={this.handleNewTrip}
+							submitButton={'Search Flights'}
 							/>
-					</Modal>) : null;
+					</BootstrapModal>) : null;
 		// const showOptions = this.state.newTrip ? dateRange : selectionButtons;
 
 		return (

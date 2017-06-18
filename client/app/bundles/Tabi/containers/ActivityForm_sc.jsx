@@ -72,11 +72,11 @@ export default class FoodForm extends React.Component{
 				  </div>
 
 	  	    <div className="row mb-2">
-	  				<div className="col-3 form-group">
+	  				<div className="col-md-3 form-group">
 	  					<label className="" htmlFor="from">From: </label>
 	  			  	<input type="time" className="form-control travel-date-inputs"  id="from" value="12:00"/>
 	  			  </div>
-	  			  <div className="col-3 form-group">
+	  			  <div className="col-md-3 form-group">
 	  					<label className="" htmlFor="to">To:</label>
 	  	  	  	<input type="time" className="form-control travel-date-inputs" id="to" value="13:00" />
 	  	  	  </div>

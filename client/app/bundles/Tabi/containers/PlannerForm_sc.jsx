@@ -89,6 +89,7 @@ export default class PlannerForm extends React.Component{
 					<FlightForm 
 						onClose={this.props.onClose}
 						activityType={this.state.subType}
+						submitButton={'Search Flights'}
 					/>);
 		}
 

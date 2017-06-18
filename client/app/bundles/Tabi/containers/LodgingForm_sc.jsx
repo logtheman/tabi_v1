@@ -85,24 +85,24 @@ export default class LodgingForm extends React.Component{
 				  </div>
 
 	  	    <div className="row mb-2">
-	  				<div className="col-3 form-group">
+	  				<div className="col-md-4 form-group">
 	  					<label className="" htmlFor="checkIn">Check-in Date:</label>
 	  			  	<input type="date" className="form-control travel-date-inputs"  id="checkIn" placeholder=""/>
 	  			  </div>
-	  			  <div className="col-3 form-group">
+	  			  <div className="col-md-4 form-group">
 	  					<label className="" htmlFor="checkOut">Check-out Date:</label>
 	  	  	  	<input type="date" className="form-control travel-date-inputs" id="checkOut" placeholder="" />
 	  	  	  </div>
 	    	  </div>
 	    	  <div className="row">
-	    	  	<div className="col-3 form-group">
+	    	  	<div className="col-md-3 form-group">
 	    	  		<label htmlFor="estimatedCost" className="">Estimated Cost:</label>
 	    	  		<div className="input-group">
 	    	  			<span className="input-group-addon">$</span>
 	    	  			 <input className="form-control" type="text" id="estimatedCost"/>
 	    	  		 </div>
 		    	  </div>
-      	  	<div className="col-3 form-group">
+      	  	<div className="col-md-3 form-group">
       	  		<div className="pt-4">
 		      	  	<label className="custom-control custom-checkbox ">
 		      	  	  <input type="checkbox" className="custom-control-input" />

@@ -7,6 +7,7 @@ const pathLib = require('path');
 
 const devBuild = process.env.NODE_ENV !== 'production';
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
 
 const config = {
   entry: [
@@ -23,6 +24,9 @@ const config = {
 
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+       react: path.resolve('node_modules/react'),
+    },
   },
   plugins: [
     new webpack.EnvironmentPlugin({ NODE_ENV: 'development' }),

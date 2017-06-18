@@ -93,19 +93,12 @@ body {
 		text-align:center
 	}
 
-	button	{
-		height: 3em;
-		border-radius: 22.5px;
-		background-color: white;
-	}
+
 
 	.text-shadow{
 		text-shadow: 1.5px 1px 0 white;
 	}
 	.trip-dates{
-		// background-color: white;
-		// border-radius: 20px;
-		// border-bottom: 1px solid black;
 		font-size: 2em;
 
 		button{
@@ -116,11 +109,10 @@ body {
 
 
 .button-container{
-
-		
 		.new-trip, .edit-trip, .explore-trips{
 			border-radius: 2px;;
-
+			height: 3em;
+			background-color: white;
 		}
 
 		.new-trip, .lodging{
@@ -387,11 +379,37 @@ form{
 
 }
 
+.modal-dialog{
+	max-width: 90%;
+	max-height: 90%;
+	overflow: auto;
+	box-shadow: 0px 19px 43px -3px rgba(0,0,0,0.56);
+	.modal-content{
+		border: none;
+	}
+	.modal-header{
+		min-height: 40px;
+		// background-color: $form-header-background-color;
+		box-shadow: 0px 4px 14px -9px rgba(0,0,0,0.56);
+		padding-top: 0px;
 
-.modal-header{
-	min-height: 40px;
-	background-color: $form-header-background-color;
+	}
+	.close-button{
+		border-radius: 0;
+		border: none;
+		font-size: 1.8em;
+		float: right;
+		padding-right: 10px;
+		max-height: 10px;
+		background-color: rgba(0,0,0, 0);
+		&:hover{
+			color: red;
+		}
+	}
 
+	@media(min-width: 900px){
+		max-width: 70%;
+	}
 }
 
 .form-group{
@@ -475,6 +493,31 @@ form{
   background: #ccc;
 }
 
+
+/********************** Flights Table CSS ****************************************/
+
+.multi-leg{
+	background: #e0e0eb;
+}
+
+.single-leg:hover, .multi-leg:hover{
+	background: #e2f1fc
+}
+
+.top-border{
+	border-top: 1px solid black;
+}
+
+.bottom-border{
+	border-bottom: 1px solid black;
+}
+
+.selected-flight{
+	background-color: red;
+}
+
+
+
 /********************** Modal CSS ****************************************/
 // // .addActivity-enter {
 // //   opacity: 0.01;
@@ -518,15 +561,15 @@ form{
 
 // //   	}
 
-// //   	.close-button{
-// //   		border-radius: 0;
-// //   		border: none;
-// //   		font-size: 1.2em;
-// //   		padding-right: 10px;
-// //   		&:hover{
-// //   			color: red;
-// //   		}
-// //   	}
+  	// .close-button{
+  	// 	border-radius: 0;
+  	// 	border: none;
+  	// 	font-size: 1.2em;
+  	// 	padding-right: 10px;
+  	// 	&:hover{
+  	// 		color: red;
+  	// 	}
+  	// }
 	
 // // }
 

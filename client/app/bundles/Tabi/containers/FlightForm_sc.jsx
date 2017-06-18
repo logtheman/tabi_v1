@@ -1,7 +1,7 @@
 import React from 'react'
-import { Modal } from 'react-bootstrap';
-
-import Geosuggest from 'react-geosuggest';
+import { Modal } from 'react-bootstrap'
+import FlightResultsList from '../components/single_day_components/FlightResultsList_dc'
+import Geosuggest from 'react-geosuggest'
 import SimpleMap from './SimpleMap_sc'
 import * as api from '../../utils/utils'
 
@@ -15,8 +15,11 @@ export default class FlightForm extends React.Component{
 				center: null,
 				QPXURL: 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCn-htcBCbG-7-a5NLKCY8ElUV7WGziTlU',
 				searchResults: '',
+				selectedFlight: null,
 			}
 			this.handleFlightQuery = this.handleFlightQuery.bind(this);
+			this.onSelectFlight = this.onSelectFlight.bind(this);
+
 		}
 
 
@@ -24,7 +27,9 @@ export default class FlightForm extends React.Component{
 
 		}	
 
-
+		onSelectFlight(index){
+			this.setState({selectedFlight: index});
+		}
 
 		handleFlightQuery(e, origin, departureDate, destination, returnDate){
 			e.preventDefault();
@@ -61,7 +66,6 @@ export default class FlightForm extends React.Component{
 
 			let nameType = '';
 			let addressInput = '';
-			console.log(this.props);
 
 			switch (this.props.activityType){
 				case '':
@@ -74,50 +78,25 @@ export default class FlightForm extends React.Component{
 				  addressInput = (<input type="text" className="form-control" id="address" placeholder="" />);
 			}
 
-			let results = '';
-			if (this.state.searchResults){
-				let flightOptions = this.state.searchResults.trips.tripOption.map((n, i) => {
-					return (
-						<tr key={i}>
-							<td>{'#'}{i}</td>
-							<td>{n.slice[0].segment[0].leg[0].operatingDisclosure}</td>
-							<td>{n.slice[0].segment[0].leg[0].origin}</td>
-							<td>{api.getDateString(n.slice[0].segment[0].leg[0].departureTime)}</td>
-							<td>{n.slice[0].segment[0].leg[0].destination}</td>
-							<td>{api.getDateString(n.slice[0].segment[0].leg[0].arrivalTime)}</td>
-						</tr>
-					);
-
-				});
-				let tableBody = (<tbody>{flightOptions}</tbody>);
-				results = (<table className="table table-striped">
-										<thead>
-											<tr>
-												<th>Option:</th>
-												<th>Carrier:</th>
-												<th>From:</th>
-												<th>Depature:</th>
-												<th>To:</th>
-												<th>Arrival:</th>
-				  						</tr>
-				  					</thead>
-				  						{tableBody}
-
-									</table>);
-			}
+			const results = this.state.searchResults ? 
+					(<FlightResultsList 
+						flights={this.state.searchResults.trips.tripOption} 
+						onSelectFlight={this.onSelectFlight}
+						selectedFlight={this.state.selectedFlight}
+						/>) : null;
 
 		return(
 			<div>
 				<form onSubmit={() => this.handleFlightQuery(event, this.refs.origin.value, this.refs.departureDate.value, this.refs.destination.value, this.refs.returnDate.value)}>
 
 				<div className="row">
-					<div className="col-5">
+					<div className="col-md-8">
 						<div className="form-group">
 						  <label htmlFor="origin">Depaturing from:</label>
 						  <input type="text" className="form-control" id="origin" placeholder="i.e. SFO" ref="origin"/>
 						</div>
 					</div>
-					<div className="col-4">
+					<div className="col-md-4">
 						<div className="form-group">
 						  <label htmlFor="departureDate">Depature Date:</label>
 						  <input type="date"  className="form-control" id="departureDate" placeholder="" ref="departureDate"/>
@@ -125,13 +104,13 @@ export default class FlightForm extends React.Component{
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-5">
+					<div className="col-md-8">
 						<div className="form-group">
 						  <label htmlFor="destination">Going to:</label>
 						  <input type="text"  className="form-control" id="destination" placeholder="i.e. LAX" ref="destination"/>
 						</div>
 					</div>
-					<div className="col-4">
+					<div className="col-md-4">
 						<div className="form-group">
 						  <label htmlFor="returnDate">Return Date:</label>
 						  <input type="date"  className="form-control" id="returnDate" placeholder="" ref="returnDate"/>
@@ -142,7 +121,7 @@ export default class FlightForm extends React.Component{
 
 
 	    	  <Modal.Footer>
-	    		  <button type="submit" className="btn btn-primary mr-3">Submit</button>
+	    		  <button type="submit" className="btn btn-primary mr-3">{this.props.submitButton}</button>
 	    		  <button type="close" className="btn btn-secondary" onClick={() => this.props.onClose('')}>Close</button>
 	    	  </Modal.Footer>
 
