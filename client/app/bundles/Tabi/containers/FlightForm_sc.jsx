@@ -1,9 +1,16 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
+import VirtualizedSelect from 'react-virtualized-select'
+
+import 'react-select/dist/react-select.css'
+import 'react-virtualized/styles.css'
+import 'react-virtualized-select/styles.css'
+import createFilterOptions from 'react-select-fast-filter-options';
 import FlightResultsList from '../components/single_day_components/FlightResultsList_dc'
-import Geosuggest from 'react-geosuggest'
 import SimpleMap from './SimpleMap_sc'
 import * as api from '../../utils/utils'
+import AIRPORTS from '../fake_data/airports.json'
+
 
 
 // const LodgingForm = (props) =>{
@@ -18,20 +25,33 @@ export default class FlightForm extends React.Component{
 				selectedFlight: null,
 				flightEarliest: '00:00',
 				flightLatest: '23:59',
+				depatureAirport: null,
+				airports: null,
 			}
+
 			this.handleFlightQuery = this.handleFlightQuery.bind(this);
 			this.onSelectFlight = this.onSelectFlight.bind(this);
 			this.handleTimeOfDayChange = this.handleTimeOfDayChange.bind(this);
+			this.logChange = this.logChange.bind(this);
 
 		}
 
-
-		onSuggestSelect(suggest) {
-
-		}	
+		componentWillMount(){
+			const airportList = AIRPORTS.map((a, i) => {
+				return ({
+					value: a.iata,
+					label: a.name
+				})
+			});
+			this.setState({airports: airportList});
+		}
 
 		onSelectFlight(index){
-			this.setState({selectedFlight: index});
+			if(this.state.selectedFlight === index){
+				this.setState({selectedFlight: null});
+			}else{
+				this.setState({selectedFlight: index});
+			}
 			console.log("selectedFlight: ", index);
 		}
 
@@ -96,14 +116,19 @@ export default class FlightForm extends React.Component{
 						flightLatest: '23:59'
 					});
 			}
+		}
 
+		logChange(result) {
+		  console.log("Selected: " + result);
+		  result ? this.setState({depatureAirport: result.value}) : this.setState({depatureAirport: null})
 		}
 
 		render(){
 
 			let nameType = '';
 			let addressInput = '';
-
+			console.log(this.state.airports);
+			const filterOptions = createFilterOptions(this.state.airports);
 			const results = this.state.searchResults ? 
 					(<FlightResultsList 
 						flights={this.state.searchResults.trips.tripOption} 
@@ -162,6 +187,16 @@ export default class FlightForm extends React.Component{
 						    <option value="afternoon">Afternoon</option>
 						    <option value="evening">Evening</option>
 						  </select>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-md-12">
+							<VirtualizedSelect
+								filterOptions={filterOptions}
+							  value={this.state.depatureAirport}
+							  options={this.state.airports}
+							  onChange={this.logChange}
+							/>
 						</div>
 					</div>
 				</div>

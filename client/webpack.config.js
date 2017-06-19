@@ -60,25 +60,15 @@ const config = {
         use: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+        }, {
+            loader: "css-loader" // translates CSS into CommonJS
+        },]
+      },
     ],
-    loaders: [
-                // Extract css files
-                {
-                    test: /\.css$/,
-                    loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
-                },
-                {
-                    test: /\.scss$/,
-                    loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'sass-loader' })
-                },
-                // Optionally extract less files
-                // or any other compile-to-css language
-                {
-                    test: /\.less$/,
-                    loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!less-loader' })
-                }
-                // You could also use other loaders the same way. I. e. the autoprefixer-loader
-            ],
   },
 };
 
