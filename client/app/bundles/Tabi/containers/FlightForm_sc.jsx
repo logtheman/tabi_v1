@@ -28,13 +28,15 @@ export default class FlightForm extends React.Component{
 				flightEarliest: '00:00',
 				flightLatest: '23:59',
 				depatureAirport: null,
+				destinationAirport: null,
 				airports: null,
 			}
 
 			this.handleFlightQuery = this.handleFlightQuery.bind(this);
 			this.onSelectFlight = this.onSelectFlight.bind(this);
 			this.handleTimeOfDayChange = this.handleTimeOfDayChange.bind(this);
-			this.logChange = this.logChange.bind(this);
+			this.handleDepatureAirport = this.handleDepatureAirport.bind(this);
+			this.handleDestinationAirport = this.handleDestinationAirport.bind(this);
 
 		}
 
@@ -57,7 +59,7 @@ export default class FlightForm extends React.Component{
 			console.log("selectedFlight: ", index);
 		}
 
-		handleFlightQuery(e, origin, departureDate, destination, returnDate, airlines){
+		handleFlightQuery(e, departureDate, returnDate, airlines){
 			e.preventDefault();
 			const flightData = {
 			  "request": {
@@ -66,18 +68,18 @@ export default class FlightForm extends React.Component{
 			    },
 			    "slice": [
 			      {
-			        "origin": origin,
-			        "destination": destination,
+			        "origin": this.state.depatureAirport,
+			        "destination": this.state.destinationAirport,
 			        "date": departureDate,
 			        "permittedDepartureTime": {
                 "earliestTime": this.state.flightEarliest,
                 "latestTime": this.state.flightLatest,
 			        },
-			        "permittedCarrier": [airlines]
+			        "permittedCarrier": airlines
 			      },
 			      {
-			        "origin": destination,
-			        "destination": origin,
+			        "origin": this.state.depatureAirport,
+			        "destination": this.state.depatureAirport,
 			        "date": returnDate
 			      }
 			    ],
@@ -85,12 +87,13 @@ export default class FlightForm extends React.Component{
 			    "refundable": false
 			  }
 			};
-			const response = api.post(this.state.QPXURL, flightData, '', 'internal')
-			.then(json=>{
-				console.log(json);
-				this.setState({searchResults: json});
+			console.log(flightData);
+			// const response = api.post(this.state.QPXURL, flightData, '', 'internal')
+			// .then(json=>{
+			// 	console.log(json);
+			// 	this.setState({searchResults: json});
 
-			});
+			// });
 		}
 
 		handleTimeOfDayChange(e){
@@ -120,9 +123,11 @@ export default class FlightForm extends React.Component{
 			}
 		}
 
-		logChange(result) {
-		  console.log("Selected: " + result);
-		  result ? this.setState({depatureAirport: result.value}) : this.setState({depatureAirport: null})
+		handleDestinationAirport(result) {
+		  result ? this.setState({destinationAirport: result.value}) : this.setState({destinationAirport: null});
+		}
+		handleDepatureAirport(result) {
+	  	result ? this.setState({depatureAirport: result.value}) : this.setState({depatureAirport: null});
 		}
 
 		render(){
@@ -139,8 +144,8 @@ export default class FlightForm extends React.Component{
 
 		return(
 			<div>
-				<form onSubmit={() => this.handleFlightQuery(event, this.refs.origin.value, 
-					this.refs.departureDate.value, this.refs.destination.value, 
+				<form onSubmit={() => this.handleFlightQuery(event, 
+					this.refs.departureDate.value, 
 					this.refs.returnDate.value, this.refs.airlines.value)}>
 
 				<div className="row">
@@ -165,7 +170,7 @@ export default class FlightForm extends React.Component{
 						  	filterOptions={filterOptions}
 						    value={this.state.depatureAirport}
 						    options={this.state.airports}
-						    onChange={this.logChange}
+						    onChange={this.handleDepatureAirport}
 						    className="select-input"
 						  />
 						</div>
@@ -173,7 +178,13 @@ export default class FlightForm extends React.Component{
 					<div className="col-md-6">
 						<div className="form-group">
 						  <label htmlFor="destination">Going to:</label>
-						  <input type="text"  className="form-control" id="destination" placeholder="i.e. LAX" ref="destination"/>
+						  <VirtualizedSelect
+						  	filterOptions={filterOptions}
+						    value={this.state.destinationAirport}
+						    options={this.state.airports}
+						    onChange={this.handleDestinationAirport}
+						    className="select-input"
+						  />
 						</div>
 					</div>
 				</div>
@@ -196,15 +207,6 @@ export default class FlightForm extends React.Component{
 						  </select>
 						</div>
 					</div>
-
-							<VirtualizedSelect
-								filterOptions={filterOptions}
-							  value={this.state.depatureAirport}
-							  options={this.state.airports}
-							  onChange={this.logChange}
-							  className="select-input"
-							/>
-
 				</div>
 				{ results }
 
