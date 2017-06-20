@@ -14,7 +14,6 @@ export default class MainPage extends React.Component {
 		super(props);
 		this.state = {
 			newTrip: false,
-			date: api.getDate()
 		}
 
 		this.handleNewTrip = this.handleNewTrip.bind(this);

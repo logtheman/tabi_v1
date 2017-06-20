@@ -11,6 +11,8 @@ import SimpleMap from './SimpleMap_sc'
 import * as api from '../../utils/utils'
 // import AIRPORTS from '../fake_data/airports.json'
 import AIRPORTS from '../fake_data/airport_list.json'
+import AIRLINES from '../fake_data/airlines.json'
+
 
 
 
@@ -23,13 +25,17 @@ export default class FlightForm extends React.Component{
 				address: null,
 				center: null,
 				QPXURL: 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCn-htcBCbG-7-a5NLKCY8ElUV7WGziTlU',
+				IATAURL: 'http://iatacodes.org/api/v6/airlines?api_key=694a8694-e38c-4aea-8370-4a7b78c4adcc',
 				searchResults: '',
 				selectedFlight: null,
+				selectedAirlines: null,
 				flightEarliest: '00:00',
 				flightLatest: '23:59',
 				depatureAirport: null,
 				destinationAirport: null,
 				airports: null,
+				airportFilterOptions: null,
+				airlines: null,
 			}
 
 			this.handleFlightQuery = this.handleFlightQuery.bind(this);
@@ -37,17 +43,34 @@ export default class FlightForm extends React.Component{
 			this.handleTimeOfDayChange = this.handleTimeOfDayChange.bind(this);
 			this.handleDepatureAirport = this.handleDepatureAirport.bind(this);
 			this.handleDestinationAirport = this.handleDestinationAirport.bind(this);
-
+			this.handleAirlines = this.handleAirlines.bind(this);
 		}
 
 		componentWillMount(){
-			const airportList = AIRPORTS.map((a, i) => {
+			const airportList = AIRPORTS.map((ap, i) => {
 				return ({
-					value: a.airport_code,
-					label: `${a.city_name} - ${a.airport_name} (${a.airport_code})`,
+					value: ap.airport_code,
+					label: `${ap.city_name} - ${ap.airport_name} (${ap.airport_code})`,
 				})
 			});
 			this.setState({airports: airportList});
+			
+			
+			//For some reason specific words 'options', etc...are required. 
+			//Use state for airports so that airlines can use options below in the render method
+			const options = airportList;
+			const filterOptions = createFilterOptions({ options });
+			this.setState({airportFilterOptions:  filterOptions});
+
+
+			const airlinesList = AIRLINES.map((al, i) => {
+				return ({
+					value: al.code,
+					label: al.name,
+				})
+			});
+			this.setState({airlines: airlinesList});
+
 		}
 
 		onSelectFlight(index){
@@ -59,7 +82,7 @@ export default class FlightForm extends React.Component{
 			console.log("selectedFlight: ", index);
 		}
 
-		handleFlightQuery(e, departureDate, returnDate, airlines){
+		handleFlightQuery(e, departureDate, returnDate){
 			e.preventDefault();
 			const flightData = {
 			  "request": {
@@ -75,10 +98,10 @@ export default class FlightForm extends React.Component{
                 "earliestTime": this.state.flightEarliest,
                 "latestTime": this.state.flightLatest,
 			        },
-			        "permittedCarrier": airlines
+			        "permittedCarrier": this.state.selectedAirlines
 			      },
 			      {
-			        "origin": this.state.depatureAirport,
+			        "origin": this.state.destinationAirport,
 			        "destination": this.state.depatureAirport,
 			        "date": returnDate
 			      }
@@ -88,12 +111,12 @@ export default class FlightForm extends React.Component{
 			  }
 			};
 			console.log(flightData);
-			// const response = api.post(this.state.QPXURL, flightData, '', 'internal')
-			// .then(json=>{
-			// 	console.log(json);
-			// 	this.setState({searchResults: json});
+			const response = api.post(this.state.QPXURL, flightData, '', 'internal')
+			.then(json=>{
+				console.log(json);
+				this.setState({searchResults: json});
 
-			// });
+			});
 		}
 
 		handleTimeOfDayChange(e){
@@ -129,11 +152,17 @@ export default class FlightForm extends React.Component{
 		handleDepatureAirport(result) {
 	  	result ? this.setState({depatureAirport: result.value}) : this.setState({depatureAirport: null});
 		}
+		handleAirlines(result) {
+	  	result ? this.setState({selectedAirlines: result.value}) : this.setState({selectedAirlines: null});
+		}
 
 		render(){
 
-			const options = this.state.airports;
+
+
+			const options = this.state.airlines;
 			const filterOptions = createFilterOptions({ options });
+
 
 			const results = this.state.searchResults ? 
 					(<FlightResultsList 
@@ -146,7 +175,7 @@ export default class FlightForm extends React.Component{
 			<div>
 				<form onSubmit={() => this.handleFlightQuery(event, 
 					this.refs.departureDate.value, 
-					this.refs.returnDate.value, this.refs.airlines.value)}>
+					this.refs.returnDate.value)}>
 
 				<div className="row">
 					<div className="col-md-6">
@@ -167,7 +196,7 @@ export default class FlightForm extends React.Component{
 						<div className="form-group">
 						  <label htmlFor="origin">Depaturing from:</label>
 						  <VirtualizedSelect
-						  	filterOptions={filterOptions}
+						  	filterOptions={this.state.airportFilterOptions}
 						    value={this.state.depatureAirport}
 						    options={this.state.airports}
 						    onChange={this.handleDepatureAirport}
@@ -179,7 +208,7 @@ export default class FlightForm extends React.Component{
 						<div className="form-group">
 						  <label htmlFor="destination">Going to:</label>
 						  <VirtualizedSelect
-						  	filterOptions={filterOptions}
+						  	filterOptions={this.state.airportFilterOptions}
 						    value={this.state.destinationAirport}
 						    options={this.state.airports}
 						    onChange={this.handleDestinationAirport}
@@ -192,7 +221,13 @@ export default class FlightForm extends React.Component{
 					<div className="col-md-8">
 						<div className="form-group">
 						  <label htmlFor="airlines">Airlines:</label>
-						  <input type="text" className="form-control" id="airlines" placeholder="i.e. Turkish Air, Delta, etc..." ref="airlines"/>
+						  <VirtualizedSelect
+						  	filterOptions={filterOptions}
+						    value={this.state.selectedAirlines}
+						    options={options}
+						    onChange={this.handleAirlines}
+						    className="select-input"
+						  />
 						</div>
 					</div>
 					<div className="col-md-4">
