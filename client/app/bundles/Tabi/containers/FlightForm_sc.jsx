@@ -9,7 +9,9 @@ import createFilterOptions from 'react-select-fast-filter-options';
 import FlightResultsList from '../components/single_day_components/FlightResultsList_dc'
 import SimpleMap from './SimpleMap_sc'
 import * as api from '../../utils/utils'
-import AIRPORTS from '../fake_data/airports.json'
+// import AIRPORTS from '../fake_data/airports.json'
+import AIRPORTS from '../fake_data/airport_list.json'
+
 
 
 
@@ -39,8 +41,8 @@ export default class FlightForm extends React.Component{
 		componentWillMount(){
 			const airportList = AIRPORTS.map((a, i) => {
 				return ({
-					value: a.iata,
-					label: a.name
+					value: a.airport_code,
+					label: `${a.city_name} - ${a.airport_name} (${a.airport_code})`,
 				})
 			});
 			this.setState({airports: airportList});
@@ -125,10 +127,9 @@ export default class FlightForm extends React.Component{
 
 		render(){
 
-			let nameType = '';
-			let addressInput = '';
-			console.log(this.state.airports);
-			const filterOptions = createFilterOptions(this.state.airports);
+			const options = this.state.airports;
+			const filterOptions = createFilterOptions({ options });
+
 			const results = this.state.searchResults ? 
 					(<FlightResultsList 
 						flights={this.state.searchResults.trips.tripOption} 
@@ -160,7 +161,13 @@ export default class FlightForm extends React.Component{
 					<div className="col-md-6">
 						<div className="form-group">
 						  <label htmlFor="origin">Depaturing from:</label>
-						  <input type="text" className="form-control" id="origin" placeholder="i.e. SFO" ref="origin"/>
+						  <VirtualizedSelect
+						  	filterOptions={filterOptions}
+						    value={this.state.depatureAirport}
+						    options={this.state.airports}
+						    onChange={this.logChange}
+						    className="select-input"
+						  />
 						</div>
 					</div>
 					<div className="col-md-6">
@@ -189,16 +196,15 @@ export default class FlightForm extends React.Component{
 						  </select>
 						</div>
 					</div>
-					<div className="row">
-						<div className="col-md-12">
+
 							<VirtualizedSelect
 								filterOptions={filterOptions}
 							  value={this.state.depatureAirport}
 							  options={this.state.airports}
 							  onChange={this.logChange}
+							  className="select-input"
 							/>
-						</div>
-					</div>
+
 				</div>
 				{ results }
 
