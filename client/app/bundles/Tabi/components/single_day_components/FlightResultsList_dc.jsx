@@ -3,14 +3,13 @@ import * as api from '../../../utils/utils'
 
 
 const FlightResultsList = (props) => {
-
-	const tableBody = props.flights.map((flight, i) => {
+	const tableBody = props.flights.slice(props.start, props.end).map((flight, i) => {
 		return(
 			flight.slice[0].segment.map((segment, j) => {
 				return(
 					segment.leg.map((leg, k) => {
 						const flightIndex = props.flights.indexOf(flight); //retrieve index as variable i shows null on the second leg
-						let flightChoiceNum = `#${i+1}`; 
+						let flightChoiceNum = `#${flightIndex+1}`; 
 						let trClass = 'single-leg'; //default styles
 						if(props.flights[flightIndex].slice[0].segment.length > 1){ //if multi leg flight
 							trClass = 'multi-leg'; //style both legs 
@@ -63,6 +62,15 @@ const FlightResultsList = (props) => {
 			<tbody className="flight-options">
 				{tableBody}
 			</tbody>	
+			<div>
+				<button onClick={() => props.handleSearchIndex(-1)}>
+					<i className="fa fa-arrow-left" aria-hidden="true"></i>
+				</button>
+				<button onClick={() => props.handleSearchIndex(1)}>
+					<i className="fa fa-arrow-right" aria-hidden="true"></i>
+				</button>
+
+			</div>
 		</table>
 	);
 }

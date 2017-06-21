@@ -27,7 +27,8 @@ export default class FlightForm extends React.Component{
 				QPXURL: 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCn-htcBCbG-7-a5NLKCY8ElUV7WGziTlU',
 				IATAURL: 'http://iatacodes.org/api/v6/airlines?api_key=694a8694-e38c-4aea-8370-4a7b78c4adcc',
 				searchResults: '',
-				selectedFlight: null,
+				selectedDepatureFlight: null,
+				selectedReturnFlight: null,
 				selectedAirlines: null,
 				flightEarliest: '00:00',
 				flightLatest: '23:59',
@@ -36,14 +37,18 @@ export default class FlightForm extends React.Component{
 				airports: null,
 				airportFilterOptions: null,
 				airlines: null,
+				pageIndex: 0,
+				resultsPerPage: 20,
+				maxSearchResult: 100,
 			}
 
 			this.handleFlightQuery = this.handleFlightQuery.bind(this);
-			this.onSelectFlight = this.onSelectFlight.bind(this);
+			this.onSelectDepatureFlight = this.onSelectDepatureFlight.bind(this);
 			this.handleTimeOfDayChange = this.handleTimeOfDayChange.bind(this);
 			this.handleDepatureAirport = this.handleDepatureAirport.bind(this);
 			this.handleDestinationAirport = this.handleDestinationAirport.bind(this);
 			this.handleAirlines = this.handleAirlines.bind(this);
+			this.handleSearchIndex = this.handleSearchIndex.bind(this);
 		}
 
 		componentWillMount(){
@@ -54,7 +59,7 @@ export default class FlightForm extends React.Component{
 				})
 			});
 			this.setState({airports: airportList});
-			
+
 			
 			//For some reason specific words 'options', etc...are required. 
 			//Use state for airports so that airlines can use options below in the render method
@@ -73,13 +78,25 @@ export default class FlightForm extends React.Component{
 
 		}
 
-		onSelectFlight(index){
-			if(this.state.selectedFlight === index){
-				this.setState({selectedFlight: null});
+		// mark the flight
+		onSelectDepatureFlight(index){
+			if(this.state.selectedDepatureFlight === index){
+				this.setState({selectedDepatureFlight: null});
 			}else{
-				this.setState({selectedFlight: index});
+				this.setState({selectedDepatureFlight: index});
 			}
-			console.log("selectedFlight: ", index);
+			console.log("selectedDepatureFlight: ", index);
+		}
+
+		handleSearchIndex(changeIndexBy){
+			// index is greater than one page worth of results
+			if(changeIndexBy === -1 && this.state.pageIndex >= this.state.resultsPerPage){ //go back one page
+				this.setState({pageIndex: (this.state.pageIndex - this.state.resultsPerPage)});
+			}
+			// index is less than one page worth of results
+			if(changeIndexBy === 1 && this.state.pageIndex < (this.state.maxSearchResult - this.state.resultsPerPage)){
+				this.setState({pageIndex: (this.state.pageIndex + this.state.resultsPerPage)});
+			}
 		}
 
 		handleFlightQuery(e, departureDate, returnDate){
@@ -106,7 +123,7 @@ export default class FlightForm extends React.Component{
 			        "date": returnDate
 			      }
 			    ],
-			    "solutions": 20,
+			    "solutions": this.state.maxSearchResult,
 			    "refundable": false
 			  }
 			};
@@ -167,8 +184,11 @@ export default class FlightForm extends React.Component{
 			const results = this.state.searchResults ? 
 					(<FlightResultsList 
 						flights={this.state.searchResults.trips.tripOption} 
-						onSelectFlight={this.onSelectFlight}
-						selectedFlight={this.state.selectedFlight}
+						onSelectDepatureFlight={this.onSelectDepatureFlight}
+						selectedDepatureFlight={this.state.selectedDepatureFlight}
+						start={this.state.pageIndex}
+						end={(this.state.pageIndex + this.state.resultsPerPage)}
+						handleSearchIndex={this.handleSearchIndex}
 						/>) : null;
 
 		return(

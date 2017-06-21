@@ -84,6 +84,14 @@ export default class PlannerForm extends React.Component{
 						 </div>);
 				}
 				break;
+			case 'activity':
+				formContent = (
+					<ActivityForm 
+						onClose={this.props.onClose}
+						activityType={this.state.subType}
+						submitButton={'Add Activity'}
+					/>);
+				break;
 			default:
 				formContent = (
 					<FlightForm 

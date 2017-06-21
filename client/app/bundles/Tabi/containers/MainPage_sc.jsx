@@ -15,6 +15,7 @@ export default class MainPage extends React.Component {
 		this.state = {
 			newTrip: false,
 		}
+		
 
 		this.handleNewTrip = this.handleNewTrip.bind(this);
 	}
@@ -88,6 +89,7 @@ export default class MainPage extends React.Component {
 							onClose={this.handleNewTrip} 
 							title={'Start New Trip'}
 							topMargin={'100px'}
+							backdrop={true}
 							>
 						<FlightForm 
 							titleChange={this.handleModalHeaderChange} 
@@ -98,7 +100,7 @@ export default class MainPage extends React.Component {
 		// const showOptions = this.state.newTrip ? dateRange : selectionButtons;
 
 		return (
-			  <div className="banner text-center mb-3">
+			  <div className="banner text-center mb-3" style={{height: window.innerHeight}}>
 				  <div className="pt-4 text-shadow">
 				    <h1 className="display-1"><strong>Tabi</strong></h1>
 				    <h3 className="mt-3 text-shadow">Plan Your Journey</h3>
@@ -107,7 +109,6 @@ export default class MainPage extends React.Component {
 				  	{displayModal}
 
 			  </div>
-
 		);
 	}
 

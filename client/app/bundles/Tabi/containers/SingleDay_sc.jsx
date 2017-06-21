@@ -26,6 +26,8 @@ export default class SingleDay extends React.Component {
 			activeActivityIndex: null, 
 			modalTitle: "What would you like to plan?"
 		}
+		document.body.style.overflowY = 'scroll';
+
 
 		this.handleChangeDay = this.handleChangeDay.bind(this); 
 		this.handleAddActivity = this.handleAddActivity.bind(this);

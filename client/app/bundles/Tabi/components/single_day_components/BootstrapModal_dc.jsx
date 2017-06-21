@@ -8,9 +8,10 @@ const BootstrapModal = (props) => {
 		marginTop: props.topMargin,
 	}
 
+	const backdropStyle = props.backdrop ? "static-modal backdrop" : "static-modal";
 
 	return (
-		<div className="static-modal" >
+		<div className={backdropStyle} >
 		  <Modal.Dialog className="" style={styles} >
 		  	<div className="pull-right">
 				  <button className="close-button" onClick={() => props.onClose('')} >
@@ -20,7 +21,7 @@ const BootstrapModal = (props) => {
 			  <Modal.Header className="modal-header">
 			  	<div className="col-2"></div>
 			    <div className="col-8  text-center">
-			      <Modal.Title className="">{props.title}</Modal.Title>
+			      <Modal.Title className=""><h2>{props.title}</h2></Modal.Title>
 			    </div>
 			    <div className="col-2"></div>
 		    </Modal.Header>

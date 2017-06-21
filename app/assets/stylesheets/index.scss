@@ -15,13 +15,12 @@ html{
 }
 
 body {
-	// min-width: 500px;
 	font-size: 0.65em;
-
 	.list-inline{
 		margin: 0;
 
 	}
+
 }
 
 // Navigation links 
@@ -82,7 +81,9 @@ body {
 	background-repeat:no-repeat;
 	background-size:auto auto;
 	background-position: center; 
-	min-height: 1000px;
+	// min-height: 800px;
+
+
 
 	.open-title{
 		font-size: 6em;
@@ -377,6 +378,7 @@ form{
 		font-size: 0.9em;
 	}
 
+
 }
 
 .modal-dialog{
@@ -386,12 +388,15 @@ form{
 	box-shadow: 0px 19px 43px -3px rgba(0,0,0,0.56);
 	.modal-content{
 		border: none;
+		background-color: $form-background-color;
+
 	}
 	.modal-header{
 		min-height: 40px;
-		// background-color: $form-header-background-color;
 		box-shadow: 0px 4px 14px -9px rgba(0,0,0,0.56);
 		padding-top: 0px;
+		// background-color: white;
+
 
 	}
 	.close-button{
@@ -401,9 +406,17 @@ form{
 		float: right;
 		padding-right: 10px;
 		max-height: 10px;
+
 		background-color: rgba(0,0,0, 0);
 		&:hover{
 			color: red;
+		}
+	}
+
+	table{
+		background-color: white;
+		thead{
+			border-bottom: 1px solid black;
 		}
 	}
 
@@ -581,17 +594,20 @@ form{
 // //   	transition: all 300ms ease-in;
 // // }
 
-// // .backdrop {
-// //   position: fixed;
-// //   top: 0;
-// //   bottom: 0;
-// //   left: 0;
-// //   right: 0;
-// //   background-color: rgba(0,0,0,0.3);
-// //   padding: 50;
-// //   z-index: 100;
-// // };
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.3);
+  padding: 50;
+  z-index: 100;
+};
 
+.ReactModal__Body--open{
+	overflow-y: hidden;
+}
 
 // .modal-content{
 // 	overflow-y: auto;
