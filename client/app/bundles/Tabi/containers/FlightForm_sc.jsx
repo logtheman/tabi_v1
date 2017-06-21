@@ -39,11 +39,11 @@ export default class FlightForm extends React.Component{
 				airlines: null,
 				pageIndex: 0,
 				resultsPerPage: 20,
-				maxSearchResult: 100,
+				maxSearchResult: 200,
 			}
 
 			this.handleFlightQuery = this.handleFlightQuery.bind(this);
-			this.onSelectDepatureFlight = this.onSelectDepatureFlight.bind(this);
+			this.onSelectFlight = this.onSelectFlight.bind(this);
 			this.handleTimeOfDayChange = this.handleTimeOfDayChange.bind(this);
 			this.handleDepatureAirport = this.handleDepatureAirport.bind(this);
 			this.handleDestinationAirport = this.handleDestinationAirport.bind(this);
@@ -79,7 +79,7 @@ export default class FlightForm extends React.Component{
 		}
 
 		// mark the flight
-		onSelectDepatureFlight(index){
+		onSelectFlight(index){
 			if(this.state.selectedDepatureFlight === index){
 				this.setState({selectedDepatureFlight: null});
 			}else{
@@ -184,11 +184,14 @@ export default class FlightForm extends React.Component{
 			const results = this.state.searchResults ? 
 					(<FlightResultsList 
 						flights={this.state.searchResults.trips.tripOption} 
-						onSelectDepatureFlight={this.onSelectDepatureFlight}
+						onSelectFlight={this.onSelectFlight}
 						selectedDepatureFlight={this.state.selectedDepatureFlight}
 						start={this.state.pageIndex}
 						end={(this.state.pageIndex + this.state.resultsPerPage)}
 						handleSearchIndex={this.handleSearchIndex}
+						showPreviousPage={(this.state.pageIndex >= this.state.resultsPerPage)}
+						showNextPage={(this.state.pageIndex < (this.state.maxSearchResult - this.state.resultsPerPage))}
+						resultsPerPage={this.state.resultsPerPage}
 						/>) : null;
 
 		return(
@@ -264,8 +267,6 @@ export default class FlightForm extends React.Component{
 					</div>
 				</div>
 				{ results }
-
-
 	    	  <Modal.Footer>
 	    		  <button type="submit" className="btn btn-primary mr-3">{this.props.submitButton}</button>
 	    		  <button type="close" className="btn btn-secondary" onClick={() => this.props.onClose('')}>Close</button>

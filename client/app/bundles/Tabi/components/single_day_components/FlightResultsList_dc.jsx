@@ -45,33 +45,47 @@ const FlightResultsList = (props) => {
 		);
 	});
 
+	const previousPage = props.showPreviousPage ? (
+		<button className="mr-1 btn btn-primary" onClick={() => props.handleSearchIndex(-1)}>
+			{`previous ${props.resultsPerPage} `}<i className="fa fa-arrow-left" aria-hidden="true"></i>
+		</button>
+		) : null;
+
+	const nextPage = props.showNextPage ? (
+		<button className="ml-1 btn btn-primary" onClick={() => props.handleSearchIndex(1)}>
+			{`next ${props.resultsPerPage} `}<i className="fa fa-arrow-right" aria-hidden="true"></i>
+		</button>
+		) : null;
+
 
 	return (
-		<table className="table">
-			<thead>
-				<tr>
-					<th>Option:</th>
-					<th>Flight #:</th>
-					<th>Carrier:</th>
-					<th>From:</th>
-					<th>Depature:</th>
-					<th>To:</th>
-					<th>Arrival:</th>
-				</tr>
-			</thead>
-			<tbody className="flight-options">
-				{tableBody}
-			</tbody>	
-			<div>
-				<button onClick={() => props.handleSearchIndex(-1)}>
-					<i className="fa fa-arrow-left" aria-hidden="true"></i>
-				</button>
-				<button onClick={() => props.handleSearchIndex(1)}>
-					<i className="fa fa-arrow-right" aria-hidden="true"></i>
-				</button>
-
+		<div>
+			<table className="table">
+				<thead>
+					<tr>
+						<th>Option:</th>
+						<th>Flight #:</th>
+						<th>Carrier:</th>
+						<th>From:</th>
+						<th>Depature:</th>
+						<th>To:</th>
+						<th>Arrival:</th>
+					</tr>
+				</thead>
+				<tbody className="flight-options">
+					{tableBody}
+					
+				</tbody>	
+			</table>
+			<div className="row">
+				<div className="col-2"></div>
+			  <div className="col-8  text-center">
+			  	{previousPage}
+			  	{nextPage}
+				</div>
+				<div className="col-2"></div>
 			</div>
-		</table>
+		</div>
 	);
 }
 
