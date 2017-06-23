@@ -1,58 +1,50 @@
-import React, { Component } from 'react'
-import GoogleMapReact from 'google-map-react'
-import SimpleMarker from '../components/single_day_components/SimpleMarker_dc';
-
-
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
+import SimpleMarker from "../components/single_day_components/SimpleMarker_dc";
 
 export default class SimpleMap extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			center: {
-				lat: 26.2144722,
-				lng: 127.6763,
-			},
-			zoom: 10,
-		}
-
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      center: {
+        lat: 26.2144722,
+        lng: 127.6763
+      },
+      zoom: 10
+    };
+  }
 
   render() {
-  	let center = this.props.center;
-  	const Markers = this.props.locations &&
-  	  this.props.locations.map((marker, index) => {
-  	  	if(index === this.props.activeLocation){
-  	  		center.lat = marker.lat;
-  	  		center.lng = marker.lng;
-  	  	}
+    let center = this.props.center;
+    const Markers =
+      this.props.locations &&
+      this.props.locations.map((marker, index) => {
+        if (index === this.props.activeLocation) {
+          center.lat = marker.lat;
+          center.lng = marker.lng;
+        }
 
-  	    return (
-  	    	<SimpleMarker
-	  	      // required props
-	  	      key={index}
-	  	      lat={marker.lat}
-	  	      lng={marker.lng}
-	  	      // any user props
-	  	      name={marker.name}
-	  	      activity={marker.activity}
-	  	      type={marker.type}
-  	       />
-  	    );   
-  	  }
-  	);
-
+        return (
+          <SimpleMarker
+            // required props
+            key={index}
+            lat={marker.lat}
+            lng={marker.lng}
+            // any user props
+            name={marker.name}
+            activity={marker.activity}
+            type={marker.type}
+          />
+        );
+      });
 
     return (
-      <GoogleMapReact
-        center={center}
-        defaultZoom={this.state.zoom}
-      >
-      	{Markers}
+      <GoogleMapReact center={center} defaultZoom={this.state.zoom}>
+        {Markers}
       </GoogleMapReact>
     );
   }
 }
-
 
 // import React, {PropTypes, Component} from 'react/addons';
 // import controllable from 'react-controllables';

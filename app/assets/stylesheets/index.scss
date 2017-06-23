@@ -81,6 +81,11 @@ body {
 	background-repeat:no-repeat;
 	background-size:auto auto;
 	background-position: center; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover; 
+	// background-size: 100% 100%;
 	// min-height: 800px;
 
 
@@ -605,9 +610,10 @@ form{
   z-index: 100;
 };
 
-.ReactModal__Body--open{
-	overflow-y: hidden;
+.modal-dialog{
+	// max-width:90%;
 }
+
 
 // .modal-content{
 // 	overflow-y: auto;
@@ -635,3 +641,15 @@ form{
 // 		}
 // 	}
 // }
+
+
+/*********************************** Borders ****************************************************/
+
+.border-top-1px{
+	border-top: 1px solid black
+}
+.border-bottom-1px{
+	border-bottom: 1px solid black
+}
+
+
