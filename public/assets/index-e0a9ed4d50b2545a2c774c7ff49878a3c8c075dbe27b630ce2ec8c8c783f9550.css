@@ -1,0 +1,500 @@
+/* line 7, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+html {
+  background-color: white;
+}
+
+/* line 13, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 17, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+body {
+  min-width: 500px;
+  font-size: 0.65em;
+}
+/* line 21, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+body .list-inline {
+  margin: 0;
+}
+
+/* line 29, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  z-index: 100;
+  border-radius: 0;
+  background-color: #61747e;
+  -webkit-box-shadow: 0px 2px 8px 1px rgba(94, 94, 94, 0.19);
+          box-shadow: 0px 2px 8px 1px rgba(94, 94, 94, 0.19);
+  padding: 0px;
+}
+/* line 42, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.navbar .nav-links {
+  font-size: 0.8rem;
+}
+/* line 44, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.navbar .nav-links a {
+  color: white;
+  text-shadow: 1.0px 1px 0 black;
+}
+/* line 47, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.navbar .nav-links a:hover {
+  color: lightblue;
+  text-shadow: 1.5px 1px 0 black;
+}
+/* line 51, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.navbar .nav-links a.active {
+  color: lightblue;
+}
+/* line 56, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.navbar .nav-links .title-header {
+  color: white;
+  text-shadow: 1px 0 0 black;
+  font-size: 3em;
+}
+/* line 61, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.navbar .nav-links .tagline {
+  color: #bfd4df;
+}
+@media (min-width: 500px) {
+  /* line 29, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+  .navbar {
+    font-size: 0.8rem;
+  }
+}
+
+/* line 74, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.navbar-padding {
+  padding-bottom: 65px;
+}
+
+/* line 80, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.banner {
+  background-image: url("banner1_black_white.jpg");
+  background-repeat: no-repeat;
+  background-size: auto auto;
+  background-position: center;
+  min-height: 1000px;
+}
+/* line 87, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.banner .open-title {
+  font-size: 6em;
+  color: black;
+}
+/* line 92, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.banner .travel-date-inputs {
+  text-align: center;
+}
+/* line 98, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.banner .text-shadow {
+  text-shadow: 1.5px 1px 0 white;
+}
+/* line 101, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.banner .trip-dates {
+  font-size: 2em;
+}
+/* line 104, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.banner .trip-dates button {
+  border-radius: 5px;
+}
+
+/* line 112, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.button-container .new-trip, .button-container .edit-trip, .button-container .explore-trips {
+  border-radius: 2px;
+  height: 3em;
+  background-color: white;
+}
+/* line 118, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.button-container .new-trip, .button-container .lodging {
+  color: #0BBCB2;
+  border-color: #0BBCB2;
+}
+/* line 121, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.button-container .new-trip:hover, .button-container .lodging:hover {
+  color: black;
+  background-color: rgba(159, 225, 231, 0.5);
+}
+/* line 126, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.button-container .edit-trip, .button-container .food {
+  color: #4DB810;
+  border-color: #4DB810;
+}
+/* line 129, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.button-container .edit-trip:hover, .button-container .food:hover {
+  color: black;
+  background-color: rgba(117, 206, 102, 0.5);
+}
+
+/********************** Single Day Container ****************************************/
+/* line 145, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container {
+  background-color: white;
+  min-height: 400px;
+  padding-left: 10px;
+}
+/* line 150, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .bottom-border {
+  border-bottom: 1px solid #777;
+}
+/* line 154, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .icon-offset {
+  padding-left: 70px;
+}
+/* line 158, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-header {
+  padding-top: 5px;
+  padding-left: 2.5em;
+  padding-bottom: 0px;
+}
+/* line 166, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline {
+  position: relative;
+  padding: 2em 0;
+}
+/* line 170, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline .activity-name {
+  font-weight: 500;
+  color: #45494f;
+  font-size: 1.2em;
+}
+/* line 176, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline .activity-time {
+  font-weight: bold;
+  color: black;
+  font-size: 1.1em;
+}
+/* line 183, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline::before {
+  /* this is the vertical line */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 42px;
+  height: 100%;
+  width: 4px;
+  background: #d7e4ed;
+}
+/* line 193, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline a {
+  color: black;
+}
+/* line 195, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline a:hover {
+  text-decoration: underline;
+}
+/* line 200, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline .food {
+  background-color: rgba(117, 206, 102, 0.5);
+  border-bottom: 1.5px solid #4DB810;
+  border-top: 1px solid #4DB810;
+}
+/* line 204, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline .food:hover {
+  background-color: rgba(117, 206, 102, 0.2);
+}
+/* line 209, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline .lodging {
+  background-color: rgba(159, 225, 231, 0.5);
+  border-bottom: 1.5px solid #0BBCB2;
+  border-top: 1px solid #0BBCB2;
+}
+/* line 213, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline .lodging:hover {
+  background-color: rgba(159, 225, 231, 0.2);
+}
+/* line 218, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline .activity {
+  background-color: rgba(255, 173, 70, 0.5);
+  border-bottom: 1.5px solid #d68c2f;
+  border-top: 1px solid #d68c2f;
+}
+/* line 222, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline .activity:hover {
+  background-color: rgba(255, 173, 70, 0.2);
+}
+/* line 231, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-block {
+  position: relative;
+  margin: 2em 0;
+  min-height: 60px;
+  padding-top: 5px;
+  font-size: 1.1em;
+}
+/* line 238, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-block:first-child {
+  margin-top: 0;
+}
+/* line 242, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-block:last-child {
+  margin-bottom: 0;
+}
+@media only screen and (min-width: 1170px) {
+  /* line 231, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+  .single-day-container .timeline-block {
+    margin: 4em 0;
+  }
+  /* line 250, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+  .single-day-container .timeline-block:first-child {
+    margin-top: 0;
+  }
+  /* line 254, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+  .single-day-container .timeline-block:last-child {
+    margin-bottom: 0;
+  }
+}
+/* line 260, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-content {
+  position: relative;
+  margin-left: 84px;
+}
+/* line 264, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-content .row:first-child {
+  padding-left: 1em;
+}
+/* line 271, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-activity-marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0 4px white, inset 0 3px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 4px white, inset 0 3px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+/* line 283, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-activity-marker i {
+  margin-left: 14px;
+  margin-top: 11px;
+  position: relative;
+  text-shadow: 0.5px 1px 0 grey;
+  color: white;
+}
+/* line 293, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-activity-marker.food {
+  background: #4DB810;
+}
+/* line 296, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-activity-marker.activity {
+  background: #d68c2f;
+  font-size: 1.3em;
+}
+/* line 299, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-activity-marker.activity i {
+  margin-left: 15px;
+}
+/* line 303, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-activity-marker.lodging {
+  background: #0BBCB2;
+  color: white;
+  top: 10px;
+}
+/* line 307, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .timeline-activity-marker.lodging i {
+  margin-left: 13px;
+}
+/* line 316, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .day-header {
+  font-size: 1.5em;
+  color: #445;
+  border-bottom: 1px solid #CCC;
+  -webkit-box-shadow: 0px 2px 8px 1px rgba(94, 94, 94, 0.19);
+  box-shadow: 0px 2px 8px 1px rgba(94, 94, 94, 0.19);
+  text-shadow: 0.5px 0.5px 0 grey;
+}
+/* line 325, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .day-header .change-day .icon {
+  color: #eee;
+  text-shadow: 0.5px 0px 1 black;
+}
+/* line 328, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.single-day-container .day-header .change-day .icon:hover {
+  color: #CCC;
+  text-shadow: 1.5px 1px 0 black;
+}
+@media (min-width: 900px) {
+  /* line 341, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+  .single-day-container .day-header {
+    font-size: 2.2em;
+  }
+}
+
+/********************** Single Day Map Styles ****************************************/
+/* line 352, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.map-column {
+  min-height: 500px;
+}
+/* line 354, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.map-column .add-activity-buttons {
+  border: 2px solid rgba(177, 191, 202, 0.8);
+  background-color: rgba(227, 242, 253, 0.2);
+  border-radius: 10px;
+  margin: 1em;
+}
+
+/********************** Form Styles ****************************************/
+/* line 375, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+form .highlight {
+  color: #1a237e;
+  font-size: 0.9em;
+}
+
+/* line 382, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.modal-dialog {
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  -webkit-box-shadow: 0px 19px 43px -3px rgba(0, 0, 0, 0.56);
+          box-shadow: 0px 19px 43px -3px rgba(0, 0, 0, 0.56);
+}
+/* line 387, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.modal-dialog .modal-content {
+  border: none;
+}
+/* line 390, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.modal-dialog .modal-header {
+  min-height: 40px;
+  -webkit-box-shadow: 0px 4px 14px -9px rgba(0, 0, 0, 0.56);
+          box-shadow: 0px 4px 14px -9px rgba(0, 0, 0, 0.56);
+  padding-top: 0px;
+}
+/* line 397, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.modal-dialog .close-button {
+  border-radius: 0;
+  border: none;
+  font-size: 1.8em;
+  float: right;
+  padding-right: 10px;
+  max-height: 10px;
+  background-color: transparent;
+}
+/* line 405, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.modal-dialog .close-button:hover {
+  color: red;
+}
+@media (min-width: 900px) {
+  /* line 382, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+  .modal-dialog {
+    max-width: 70%;
+  }
+}
+
+/* line 415, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.form-group {
+  font-size: 1.6em;
+  font-weight: 500;
+}
+/* line 419, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.form-group label {
+  color: #212121;
+}
+
+/**
+ * The geosuggest module
+ * NOTE: duplicated font-sizes' are for browsers which don't support rem (only IE 8)
+ */
+/* line 430, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.geosuggest {
+  font-size: 18px;
+  font-size: 1rem;
+  position: relative;
+  text-align: left;
+}
+
+/* line 446, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.geosuggest__input:focus {
+  border-color: #267dc0;
+  -webkit-box-shadow: 0 0 0 transparent;
+          box-shadow: 0 0 0 transparent;
+}
+
+/* line 450, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.geosuggest__suggests {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 25em;
+  padding: 0;
+  margin-top: -1px;
+  background: #fff;
+  border: 2px solid #267dc0;
+  border-top-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  list-style: none;
+  z-index: 5;
+  -webkit-transition: max-height 0.2s, border 0.2s;
+  transition: max-height 0.2s, border 0.2s;
+}
+
+/* line 468, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.geosuggest__suggests--hidden {
+  max-height: 0;
+  overflow: hidden;
+  border-width: 0;
+}
+
+/**
+ * A geosuggest item
+ */
+/* line 477, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.geosuggest__item {
+  font-size: 18px;
+  font-size: 1rem;
+  padding: .5em .65em;
+  cursor: pointer;
+}
+
+/* line 483, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.geosuggest__item:hover,
+.geosuggest__item:focus {
+  background: #f5f5f5;
+}
+
+/* line 487, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.geosuggest__item--active {
+  background: #267dc0;
+  color: #fff;
+}
+
+/* line 491, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.geosuggest__item--active:hover,
+.geosuggest__item--active:focus {
+  background: #ccc;
+}
+
+/********************** Flights Table CSS ****************************************/
+/* line 499, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.flight-options {
+  border: none;
+}
+/* line 501, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.flight-options .multi-leg {
+  background: #e0e0eb;
+}
+/* line 505, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.flight-options .single-leg:hover, .flight-options .multi-leg:hover {
+  background: #e2f1fc;
+}
+/* line 509, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.flight-options .top-border {
+  border-top: 1px solid black;
+}
+/* line 513, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.flight-options .bottom-border {
+  border-bottom: 1px solid black;
+}
+/* line 517, /Users/loganmurdock/Programming Projects/carrot_university/Tabi_V1/tabi_v1/app/assets/stylesheets/index.scss */
+.flight-options .selected-flight {
+  background-color: #e2f1fc;
+}
+
+/********************** Modal CSS ****************************************/

@@ -16,6 +16,8 @@
     "client/node_modules"
   ],
   "dependencies": {
+    "css-loader": "^0.28.1",
+    "style-loader": "^0.17.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.3.2",
