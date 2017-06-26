@@ -8,7 +8,7 @@ import LodgingRow from "../components/single_day_components/LodgingRow_dc";
 import DayHeader from "../components/single_day_components/DayHeader_dc";
 import DayTimeLine from "../components/single_day_components/DayTimeLine_dc";
 import BootstrapModal from "../components/single_day_components/BootstrapModal_dc";
-import AddActivity from "../components/single_day_components/AddActivity_dc";
+import AddMilestone from "../components/single_day_components/AddMilestone_dc";
 
 //Containers
 import PlannerForm from "./PlannerForm_sc";
@@ -21,17 +21,17 @@ export default class SingleDay extends React.Component {
 		super(props);
 		this.state = {
 			dayNum: 1, //placeholder
-			showAddActivity: "",
-			activeActivityIndex: null,
+			showAddMilestone: "",
+			activeMilestoneIndex: null,
 			modalTitle: "What would you like to plan?"
 		};
 		document.body.style.overflowY = "scroll";
 
 		this.handleChangeDay = this.handleChangeDay.bind(this);
-		this.handleAddActivity = this.handleAddActivity.bind(this);
+		this.handleAddMilestone = this.handleAddMilestone.bind(this);
 		this.handleModalHeaderChange = this.handleModalHeaderChange.bind(this);
-		this.handleMouseEnterActivity = this.handleMouseEnterActivity.bind(this);
-		this.handleMouseLeaveActivity = this.handleMouseLeaveActivity.bind(this);
+		this.handleMouseEnterMilestone = this.handleMouseEnterMilestone.bind(this);
+		this.handleMouseLeaveMilestone = this.handleMouseLeaveMilestone.bind(this);
 	}
 
 	handleChangeDay(dayChange) {
@@ -39,8 +39,8 @@ export default class SingleDay extends React.Component {
 		this.setState({ dayNum: this.state.dayNum + dayChange });
 	}
 
-	handleAddActivity(type, title) {
-		this.setState({ showAddActivity: type });
+	handleAddMilestone(type, title) {
+		this.setState({ showAddMilestone: type });
 		this.setState({ modalTitle: title });
 	}
 
@@ -48,11 +48,11 @@ export default class SingleDay extends React.Component {
 		this.setState({ modalTitle: newHeader });
 	}
 
-	handleMouseEnterActivity(index) {
-		this.setState({ activeActivityIndex: index });
+	handleMouseEnterMilestone(index) {
+		this.setState({ activeMilestoneIndex: index });
 	}
-	handleMouseLeaveActivity() {
-		this.setState({ activeActivityIndex: null });
+	handleMouseLeaveMilestone() {
+		// this.setState({ activeActivityIndex: null });
 	}
 
 	render() {
@@ -61,15 +61,15 @@ export default class SingleDay extends React.Component {
 			lng: FAKEDATA[this.state.dayNum - 1][0].lng
 		};
 
-		const displayModal = this.state.showAddActivity
+		const displayModal = this.state.showAddMilestone
 			? <BootstrapModal
-					onClose={this.handleAddActivity}
+					onClose={this.handleAddMilestone}
 					title={this.state.modalTitle}
 				>
 					<PlannerForm
 						titleChange={this.handleModalHeaderChange}
-						type={this.state.showAddActivity}
-						onClose={this.handleAddActivity}
+						type={this.state.showAddMilestone}
+						onClose={this.handleAddMilestone}
 					/>
 				</BootstrapModal>
 			: null;
@@ -91,33 +91,24 @@ export default class SingleDay extends React.Component {
 								<LodgingRow lodgingInfo={FAKEDATA[this.state.dayNum - 1][0]} />
 								<DayTimeLine
 									dayInfo={FAKEDATA[this.state.dayNum - 1]}
-									handleAddActivity={this.handleAddActivity}
-									handleMouseEnterActivity={this.handleMouseEnterActivity}
-									handleMouseLeaveActivity={this.handleMouseLeaveActivity}
+									handleAddMilestone={this.handleAddMilestone}
+									handleMouseEnterMilestone={this.handleMouseEnterMilestone}
+									handleMouseLeaveMilestone={this.handleMouseLeaveMilestone}
 								/>
 							</div>
 						</div>
 					</div>
 					<div className="col-md-5 map-column">
 						<div className="align-center">
-							<AddActivity
+							<AddMilestone
 								viewType="singleDay"
-								handleAddActivity={this.handleAddActivity}
+								handleAddMilestone={this.handleAddMilestone}
 							/>
 						</div>
-						<div
-							style={{
-								height: "60%",
-								marginTop: "10px",
-								marginRight: "10px",
-								marginLeft: "10px",
-								border: "1px solid black",
-								minHeight: "500px"
-							}}
-						>
+						<div className="single-day-map">
 							<SimpleMap
 								locations={FAKEDATA[this.state.dayNum - 1]}
-								activeLocation={this.state.activeActivityIndex}
+								activeLocation={this.state.activeMilestoneIndex}
 								center={center}
 							/>
 						</div>

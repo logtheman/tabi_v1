@@ -11,9 +11,10 @@ const BootstrapModal = props => {
 		? "static-modal backdrop"
 		: "static-modal";
 
-	return (
-		<div className={backdropStyle}>
-			<Modal.Dialog className="large" style={styles}>
+	const header = props.header ? (
+			props.header
+		) : (
+			<div>
 				<div className="pull-right">
 					<button className="close-button" onClick={() => props.onClose("")}>
 						<i className="fa fa-times" aria-hidden="true" />
@@ -26,6 +27,13 @@ const BootstrapModal = props => {
 					</div>
 					<div className="col-2" />
 				</Modal.Header>
+			</div>
+		);
+
+	return (
+		<div className={backdropStyle}>
+			<Modal.Dialog className="large" style={styles}>
+				{header}
 
 				<Modal.Body className="pt-2">
 					{props.children}

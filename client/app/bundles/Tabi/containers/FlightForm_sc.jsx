@@ -1,7 +1,11 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import VirtualizedSelect from "react-virtualized-select";
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import "react-select/dist/react-select.css";
 import "react-virtualized/styles.css";
 import "react-virtualized-select/styles.css";
@@ -53,12 +57,15 @@ export default class FlightForm extends React.Component {
 			airlines: null,
 			pageIndex: 0,
 			resultsPerPage: 20,
-			maxSearchResult: 200
+			maxSearchResult: 200,
+			roundTrip: true,
 		};
 
 		this.handleFlightQuery = this.handleFlightQuery.bind(this);
-		this.onSelectFlight = this.onSelectFlight.bind(this);
+		this.handleSelectFlight = this.handleSelectFlight.bind(this);
 		this.handleTimeOfDayChange = this.handleTimeOfDayChange.bind(this);
+		this.handleChangeDepartureDate = this.handleChangeDepartureDate.bind(this);
+		this.handleChangeReturnDate = this.handleChangeReturnDate.bind(this);
 		this.handleDepatureAirport = this.handleDepatureAirport.bind(this);
 		this.handleDestinationAirport = this.handleDestinationAirport.bind(this);
 		this.handleAirlines = this.handleAirlines.bind(this);
@@ -90,6 +97,14 @@ export default class FlightForm extends React.Component {
 		this.setState({ airlines: airlinesList });
 	}
 
+	handleChangeDepartureDate(date){
+		this.setState({departureDate: date});
+	}
+
+	handleChangeReturnDate(date){
+		this.setState({returnDate: date});
+	}
+
 	handleChangeSlice(changeSliceBy) {
 		if(changeSliceBy === 1 && (this.state.sliceIndex < 2)){
 			this.setState({sliceIndex: this.state.sliceIndex+1});
@@ -99,11 +114,13 @@ export default class FlightForm extends React.Component {
 	}
 
 	// mark the flight
-	onSelectFlight(index, sliceIndex) {
+	handleSelectFlight(index, sliceIndex) {
 		let selectedFlightsArray = [ ...this.state.selectedFlights];
 		selectedFlightsArray[sliceIndex] = index;
 		this.setState({ selectedFlights: selectedFlightsArray });
 	}
+
+
 
 	handleSearchIndex(changeIndexBy) {
 		// index is greater than one page worth of results
@@ -167,12 +184,15 @@ export default class FlightForm extends React.Component {
 		this.setState({ searchResults: SAMPLEFLIGHTS });
 	}
 
-	handleTimeOfDayChange(e) {
-		e.preventDefault();
-		let tod = e.target.value;
+	handleTimeOfDayChange(tod) {
+		// e.preventDefault();
+		// let tod = e.target.value;
 		switch (tod) {
 			case "morning":
-				this.setState({ flightLatest: "11:59" });
+				this.setState({
+					flightEarliest: "00:01", 
+					flightLatest: "11:59" 
+				});
 				break;
 			case "afternoon":
 				this.setState({
@@ -192,6 +212,14 @@ export default class FlightForm extends React.Component {
 					flightLatest: "23:59"
 				});
 		}
+	}
+
+	handleActiveClass(earliestTime){
+	  let classString = "btn btn-secondary";
+	  if(earliestTime === this.state.flightEarliest){
+	    classString += " active";
+	  }
+	  return classString;
 	}
 
 	handleDestinationAirport(result) {
@@ -218,7 +246,7 @@ export default class FlightForm extends React.Component {
 		const results = this.state.searchResults
 			? <FlightResultsList
 					flights={this.state.searchResults.trips.tripOption}
-					onSelectFlight={this.onSelectFlight}
+					handleSelectFlight={this.handleSelectFlight}
 					selectedFlightIndex={this.state.selectedFlights[this.state.sliceIndex]}
 					start={this.state.pageIndex}
 					end={this.state.pageIndex + this.state.resultsPerPage}
@@ -246,47 +274,54 @@ export default class FlightForm extends React.Component {
 				)
 			: null;
 
+		const flightSearchButton = (this.state.selectedFlights.length === 2) ? 
+			(<NavLink to="/single_day">
+				<button type="submit" className="btn btn-primary mr-3"> 
+					Proceed with Selected
+				</button></NavLink>) :
+			 (<button type="submit" className="btn btn-primary mr-3" onClick={this.handleFlightQuery}> 
+					Search Flights
+				</button>);
+
 		return (
 			<div>
-				<form
-					onSubmit={() =>
-						this.handleFlightQuery(
-							event,
-							this.refs.departureDate.value,
-							this.refs.returnDate.value
-						)}
-				>
+				<form>
 
 					<div className="row">
-						<div className="col-md-6">
+						<div className="col-md-6">	
 							<div className="form-group">
-								<label htmlFor="departureDate">Depature Date:</label>
-								<input
-									type="date"
-									className="form-control"
-									value={this.state.departureDate}
-									id="departureDate"
-									ref="departureDate"
+								<label htmlFor="departureDate" style={{width:"100%"}}>
+									Leaving on
+								</label>
+
+								<DatePicker
+								    selected={this.state.departureDate}
+								    selectsStart
+								    startDate={this.state.departureDate}
+								    endDate={this.state.returnDate}
+								    onChange={this.handleChangeDepartureDate}
 								/>
 							</div>
 						</div>
-						<div className="col-md-6">
-							<div className="form-group">
-								<label htmlFor="returnDate">Return Date:</label>
-								<input
-									type="date"
-									className="form-control"
-									value={this.state.returnDate}
-									id="returnDate"
-									ref="returnDate"
+						<div className="col-md-6">	
+							<div className="form-group" >
+								<label htmlFor="returnDate" style={{width:"100%"}}>
+									Returning on
+								</label>
+								<DatePicker
+								    selected={this.state.returnDate}
+								    selectsEnd
+								    startDate={this.state.departureDate}
+								    endDate={this.state.returnDate}
+								    onChange={this.handleChangeReturnDate}
 								/>
 							</div>
 						</div>
 					</div>
 					<div className="row">
-						<div className="col-md-6">
+						<div className="col-md-12	">
 							<div className="form-group">
-								<label htmlFor="origin">Depaturing from:</label>
+								<label htmlFor="origin">Depaturing from</label>
 								<VirtualizedSelect
 									filterOptions={this.state.airportFilterOptions}
 									value={this.state.depatureAirport}
@@ -296,9 +331,11 @@ export default class FlightForm extends React.Component {
 								/>
 							</div>
 						</div>
-						<div className="col-md-6">
+					</div>
+					<div className="row">
+						<div className="col-md-12">
 							<div className="form-group">
-								<label htmlFor="destination">Going to:</label>
+								<label htmlFor="destination">Going to</label>
 								<VirtualizedSelect
 									filterOptions={this.state.airportFilterOptions}
 									value={this.state.destinationAirport}
@@ -310,9 +347,13 @@ export default class FlightForm extends React.Component {
 						</div>
 					</div>
 					<div className="row">
-						<div className="col-md-8">
+						<div className="col-md-12">
 							<div className="form-group">
-								<label htmlFor="airlines">Airlines:</label>
+								<label htmlFor="airlines">Airlines 
+									<span className="optional-label"> 
+										 {' '}(optional) 
+									</span>
+								</label>
 								<VirtualizedSelect
 									filterOptions={filterOptions}
 									value={this.state.selectedAirlines}
@@ -322,30 +363,42 @@ export default class FlightForm extends React.Component {
 								/>
 							</div>
 						</div>
-						<div className="col-md-4">
+					</div>
+					<div className="row">
+						<div className="col-md-12">
 							<div className="form-group">
-								<label htmlFor="timeOfDay">Time of Day:</label><br />
-								<select
-									className="custom-select"
-									onChange={this.handleTimeOfDayChange}
-								>
-									<option defaultValue>Time of day</option>
-									<option value="any">Any</option>
-									<option value="morning">Morning</option>
-									<option value="afternoon">Afternoon</option>
-									<option value="evening">Evening</option>
-								</select>
+								<label htmlFor="timeOfDay">Time of Day
+									<span className="optional-label"> 
+										 {' '}(optional)
+									</span>
+								</label><br />
+							<div className="btn-group" data-toggle="buttons" >
+							  <label className={this.handleActiveClass('00:00')}>
+							    <input type="radio" 
+							    	onClick={() => this.handleTimeOfDayChange('any')} 
+							    	/> Any Time
+							  </label>
+							  <label className={this.handleActiveClass('00:01')}>
+							    <input type="radio" 
+							    	onClick={() => this.handleTimeOfDayChange('morning')} 
+
+							    	/> Morning
+							  </label>
+							  <label className={this.handleActiveClass('12:00')}>
+							    <input type="radio" onClick={() => this.handleTimeOfDayChange('afternoon')} /> Afternoon
+							  </label>
+							  <label className={this.handleActiveClass('17:00')}>
+							    <input type="radio" onClick={() => this.handleTimeOfDayChange('evening')} /> Evening
+							  </label>
 							</div>
 						</div>
 					</div>
+				</div>
 					{results}
 
 					{displaySelectedFlights}
 					<Modal.Footer>
-
-						<button type="submit" className="btn btn-primary mr-3">
-							{this.props.submitButton}
-						</button>
+						{flightSearchButton}
 						<button
 							type="close"
 							className="btn btn-secondary"

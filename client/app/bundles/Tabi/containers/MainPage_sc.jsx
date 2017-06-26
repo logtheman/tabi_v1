@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import * as api from "../../utils/utils";
 import BootstrapModal from "../components/single_day_components/BootstrapModal_dc";
 import TripDatesForm from "../components/single_day_components/TripDatesForm_dc";
+import ModalHeader from "../components/single_day_components/ModalHeader_dc";
+
 import FlightForm from "./FlightForm_sc";
+import moment from 'moment';
+
 
 export default class MainPage extends React.Component {
 	constructor(props) {
@@ -12,8 +16,8 @@ export default class MainPage extends React.Component {
 		this.state = {
 			newTrip: false,
 			windowHeight: window.innerHeight,
-			tripStartDate: null,
-			tripEndDate: null,
+			tripStartDate: moment(),
+			tripEndDate: moment(),
 			showFlightForm: null,
 
 		};
@@ -33,17 +37,11 @@ export default class MainPage extends React.Component {
 	}
 
 	handleAddStartDate(e){
-		e.preventDefault();
-		this.setState({
-			tripStartDate: e.target.value,
-		});
+		this.setState({tripStartDate: e});
 	}
 
 	handleAddEndDate(e){
-		e.preventDefault();
-		this.setState({
-			tripEndDate: e.target.value,
-		});
+		this.setState({tripEndDate: e});
 	}
 
 	handleNewTrip() {
@@ -94,84 +92,39 @@ export default class MainPage extends React.Component {
 			</div>
 		);
 
-		const dateRange = (
-			<div className="container trip-dates mt-5">
-				<div className="center-block">
-					<form className="center-block">
-						<div className="row">
-							<div className="col-6">
-								<label className="text-shadow" htmlFor="tripStart">
-									Start Date
-								</label>
-							</div>
-							<div className="col-6">
-								<label className="text-shadow" htmlFor="tripEnd">
-									End Date
-								</label>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col-6">
-								<label className="sr-only" htmlFor="tripStart">
-									Start Date
-								</label>
-								<input
-									type="date"
-									className="form-control travel-date-inputs"
-									id="tripStart"
-									placeholder="Start Date"
-								/>
-							</div>
-							<div className="col-6">
-								<label className="sr-only" htmlFor="tripEnd">End Date</label>
-								<input
-									type="date"
-									className="form-control travel-date-inputs"
-									id="tripEnd"
-									placeholder="Choose a Date"
-								/>
-							</div>
-						</div>
-						<div className="row mt-1	">
-							<div className="col-md-6 offset-md-3">
-								<Link to="/single_day">
-									<button
-										type="button"
-										className="btn btn-outline-primary btn-block start-trip-button "
-									>
-										Plan Trip!
-									</button>
-								</Link>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div> //end of container
-		);
-
-
 		const displayForm = this.state.showFlightForm ? (
 				<FlightForm
 					titleChange={this.handleModalHeaderChange}
 					onClose={this.handleNewTrip}
 					departureDate={this.state.tripStartDate}
 					returnDate={this.state.tripEndDate}
-					submitButton={"Search Flights"}
 				/>
 			) : (
 				<TripDatesForm
 					handleAddStartDate={this.handleAddStartDate}
 					handleAddEndDate={this.handleAddEndDate}
 					handleAddFlight={this.handleAddFlight}
+					tripStartDate={this.state.tripStartDate}
+					tripEndDate={this.state.tripEndDate}
+
 				/>
 			);
 
 		const displayModal = this.state.newTrip
 			? <BootstrapModal
-					onClose={this.handleNewTrip}
 					title={"Start New Trip"}
 					topMargin={"100px"}
 					backdrop={true}
+					header={
+						<ModalHeader
+							type={'new trip'}
+							onClose={this.handleNewTrip} > 
+							<div className="mt-1 mb-1">
+								<b>New Trip</b>
+								<hr />
+							</div>
+						 </ModalHeader>
+					}
 				>
 					{displayForm} 
 				</BootstrapModal>

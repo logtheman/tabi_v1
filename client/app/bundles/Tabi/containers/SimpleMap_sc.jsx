@@ -23,18 +23,34 @@ export default class SimpleMap extends Component {
           center.lat = marker.lat;
           center.lng = marker.lng;
         }
+        //TODO : add lines between locations
+        // let plotLine = null;
+        // if(index > 0){
+        //   let lineCoordinates = [
+        //     {lat: this.props.locations[index-1].lat, lng: this.props.locations[index-1].lng},
+        //     {lat: marker.lat, lng: marker.lng},
+
+        //   ];
+        //   plotLine = new google.maps.Polyline({
+        //     path: lineCoordinates,
+        //     geodesic: true,
+        //     strokeColor: '#FF0000',
+        //     strokeOpacity: 1.0,
+        //     strokeWeight: 2
+        //   });
+        // }
 
         return (
-          <SimpleMarker
-            // required props
-            key={index}
-            lat={marker.lat}
-            lng={marker.lng}
-            // any user props
-            name={marker.name}
-            activity={marker.activity}
-            type={marker.type}
-          />
+            <SimpleMarker
+              // required props
+              key={index}
+              lat={marker.lat}
+              lng={marker.lng}
+              // any user props
+              name={marker.name}
+              activity={marker.activity}
+              type={marker.type}
+            />
         );
       });
 

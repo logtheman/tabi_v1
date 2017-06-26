@@ -8,13 +8,29 @@ const K_HEIGHT = 30;
 
 const simpleMarkerStyle = (props) => {
   let backgroundColor = '#75ce66';
-  if(props.type === 'food'){
-    backgroundColor = '#75ce66';    
-  }else if(props.type === 'activity'){
-    backgroundColor = '#FFAD46';
-  }else if(props.type === 'lodging'){
-    backgroundColor = '#9FE1E7'
+  switch(props.type){
+    case 'food':
+      backgroundColor = '#4DB810'; 
+      break;
+    case 'lodging':
+      backgroundColor = '#0BBCB2';
+      break;
+    case 'flight':
+      backgroundColor ='#d73532';
+      break;
+    default:
+      backgroundColor = '#d68c2f';
+  
   }
+  // if(props.type === 'food'){
+  //   backgroundColor = '#75ce66';    
+  // }else if(props.type === 'activity'){
+  //   backgroundColor = '#FFAD46';
+  // }else if(props.type === 'lodging'){
+  //   backgroundColor = '#9FE1E7'
+  // }else if(props.type === 'flight'){
+  //   backgroundColor ='#FA573C'
+  // }
 
 
 
@@ -33,7 +49,8 @@ const simpleMarkerStyle = (props) => {
     boxShadow: '0 .5px 0 .5px gray', 
     backgroundColor: `${backgroundColor}`,
     textAlign: 'center',
-    color: '#3f51b5',
+    // color: '#3f51b5',
+    color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
     padding: 4
@@ -42,13 +59,30 @@ const simpleMarkerStyle = (props) => {
 
 const SimpleMarkerIcon = (props) => {
   let iconString = '';
-  if(props.type === 'food'){
-    iconString = 'fa fa-cutlery fa-1x';
-  }else if(props.type === 'activity'){
-    iconString = 'fa fa-map-marker fa-1x';
-  }else if(props.type === 'lodging'){
-    iconString = 'fa fa-bed fa-1x';
+  switch(props.type){
+    case 'food':
+      iconString = 'fa fa-cutlery fa-1x';
+      break;
+    case 'lodging':
+      iconString = 'fa fa-bed fa-1x';
+      break;
+    case 'flight':
+      iconString = 'fa fa-plane fa-1x';
+      break;
+    default:
+      iconString = 'fa fa-map-marker fa-1x';
+ 
   }
+  // if(props.type === 'food'){
+  //   iconString = 'fa fa-cutlery fa-1x';
+  // }else if(props.type === 'activity'){
+  //   iconString = 'fa fa-map-marker fa-1x';
+  // }else if(props.type === 'lodging'){
+  //   iconString = 'fa fa-bed fa-1x';
+  // }else if(props.type === 'flight'){
+  //   iconString = 'fa fa-plane fa-1x';
+
+  // }
 
   return (
     <div className={`timeline-activity-marker ${props.type}`}>

@@ -1,13 +1,19 @@
 import React from "react";
 
-const Activity = props => {
+const Milestone = props => {
   let iconString = "";
-  if (props.info.type === "food") {
-    iconString = "fa fa-cutlery fa-2x";
-  } else if (props.info.type === "activity") {
-    iconString = "fa fa-map-marker fa-2x";
-  } else if (props.info.type === "lodging") {
-    iconString = "fa fa-bed fa-2x";
+  switch(props.info.type){
+    case 'food':
+      iconString = "fa fa-cutlery fa-2x";
+      break;
+      case 'lodging':
+        iconString = "fa fa-map-marker fa-2x";
+        break;
+      case 'flight':
+        iconString = "fa fa-plane fa-2x";
+        break;
+      default:
+        iconString = "fa fa-map-marker fa-2x";
   }
 
   return (
@@ -20,9 +26,10 @@ const Activity = props => {
           <ul className="list-inline">
             <li className="activity-time">
               {props.info.time}
+              {props.info.arrivalTime}
             </li>
             <li className="activity-name">
-              {props.info.activity}
+              {props.info.description}
             </li>
           </ul>
         </div>
@@ -31,4 +38,4 @@ const Activity = props => {
   );
 };
 
-export default Activity;
+export default Milestone;

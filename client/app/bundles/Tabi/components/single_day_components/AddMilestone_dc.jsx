@@ -1,7 +1,7 @@
 import React from "react";
 import ReactTooltip from "react-tooltip";
 
-const AddAcivity = props => {
+const AddMilestone = props => {
 	return (
 		<div className="add-activity-buttons button-container text-center">
 			<div className={`${props.viewType}`}>
@@ -13,7 +13,7 @@ const AddAcivity = props => {
 						data-tip="true"
 						className="btn btn-outline-info btn-sm mr-2 ml-2 mb-1"
 						onClick={() =>
-							props.handleAddActivity("lodging", "Type of Lodging:")}
+							props.handleAddMilestone("lodging", "Type of Lodging:")}
 					>
 						<i
 							className="fa fa-bed fa-2x pr-2 add-activity-icon"
@@ -33,7 +33,7 @@ const AddAcivity = props => {
 						data-tip="true"
 						className="btn btn-outline-success btn-sm mr-2 mb-1"
 						onClick={() =>
-							props.handleAddActivity("food", "Type of meal plan:")}
+							props.handleAddMilestone("food", "Type of meal plan:")}
 					>
 						<i
 							className="fa fa-cutlery fa-2x pr-2 add-activity-icon"
@@ -54,7 +54,7 @@ const AddAcivity = props => {
 						data-tip="true"
 						className="btn btn-outline-warning btn-sm mr-2 mb-1"
 						onClick={() =>
-							props.handleAddActivity("activity", "Activity Information:")}
+							props.handleAddMilestone("activity", "Activity Information:")}
 					>
 						<i
 							className="fa fa-map-marker fa-2x pr-2 add-activity-icon"
@@ -75,7 +75,7 @@ const AddAcivity = props => {
 						data-tip="true"
 						className="btn btn-outline-danger btn-sm mr-2 mb-1"
 						onClick={() =>
-							props.handleAddActivity("flight", "Flight Information:")}
+							props.handleAddMilestone("flight", "Flight Information:")}
 					>
 						<i
 							className="fa fa-plane fa-2x pr-2 add-activity-icon"
@@ -90,4 +90,4 @@ const AddAcivity = props => {
 	);
 };
 
-export default AddAcivity;
+export default AddMilestone;

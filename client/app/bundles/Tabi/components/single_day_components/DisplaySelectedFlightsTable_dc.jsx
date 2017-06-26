@@ -8,6 +8,7 @@ const DisplaySelectedFlightsTable = (props) => {
 		return props.allFlights[flightIndex].slice[i].segment.map((segment, j) => {
 			return segment.leg.map((leg, k) => {
 				let trClass = "single-leg"; //default styles
+				const separatedLine = i > 0 ? (<hr />) : '';
 
 				return (
 					<tr

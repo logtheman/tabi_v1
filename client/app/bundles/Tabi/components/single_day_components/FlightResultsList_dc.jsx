@@ -35,7 +35,7 @@ const FlightResultsList = props => {
 						<tr
 							key={flightIndex + j + k}
 							className={trClass}
-							onClick={() => props.onSelectFlight(flightIndex, props.sliceIndex)}
+							onClick={() => props.handleSelectFlight(flightIndex, props.sliceIndex)}
 						>
 							<td>{flightChoiceNum}</td>
 							<td>
@@ -82,10 +82,10 @@ const FlightResultsList = props => {
 		: null;
 
 		const nextFlightButton = props.sliceIndex < 1 ? (
-				<button className="btn btn-success" onClick={() => props.handleChangeSlice(1)}> Next Flight </button>
+				<button className="btn btn-success" onClick={() => props.handleChangeSlice(1)}> Return Flight </button>
 			) : null ;
 		const previousFlightButton = (props.sliceIndex > 0 && props.sliceIndex < 2)  ? (
-				<button className="btn btn-success" onClick={() => props.handleChangeSlice(-1)}> Previous Flight </button>
+				<button className="btn btn-success" onClick={() => props.handleChangeSlice(-1)}> Depature Flight </button>
 			) : null ;
 
 	return (
@@ -108,14 +108,14 @@ const FlightResultsList = props => {
 				</tbody>
 			</table>
 			<div className="row mb-1">
-				<div className="col-2" >
+				<div className="col-3" >
 					{previousFlightButton}
 				</div>
-				<div className="col-8  text-center">
+				<div className="col-6  text-center">
 					{previousPage}
 					{nextPage}
 				</div>
-				<div className="col-2" >
+				<div className="col-3" >
 					{nextFlightButton}
 				</div>
 			</div>

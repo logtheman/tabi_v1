@@ -4,6 +4,8 @@ import LodgingForm from "./LodgingForm_sc";
 import FoodForm from "./FoodForm_sc";
 import ActivityForm from "./ActivityForm_sc";
 import FlightForm from "./FlightForm_sc";
+import moment from 'moment';
+
 
 export default class PlannerForm extends React.Component {
 	constructor(props) {
@@ -113,6 +115,9 @@ export default class PlannerForm extends React.Component {
 						onClose={this.props.onClose}
 						activityType={this.state.subType}
 						submitButton={"Search Flights"}
+						departureDate={moment()}
+						returnDate={moment()}
+
 					/>
 				);
 		}
