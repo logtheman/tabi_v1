@@ -88,7 +88,6 @@ export default class SingleDay extends React.Component {
 								handleChangeDay={this.handleChangeDay}
 							/>
 							<div className="ml-1">
-								<LodgingRow lodgingInfo={FAKEDATA[this.state.dayNum - 1][0]} />
 								<DayTimeLine
 									dayInfo={FAKEDATA[this.state.dayNum - 1]}
 									handleAddMilestone={this.handleAddMilestone}
@@ -118,3 +117,5 @@ export default class SingleDay extends React.Component {
 		);
 	}
 }
+
+// <LodgingRow lodgingInfo={FAKEDATA[this.state.dayNum - 1][0]} />

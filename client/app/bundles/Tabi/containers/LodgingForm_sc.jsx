@@ -49,7 +49,7 @@ export default class LodgingForm extends React.Component {
 				addressInput = (
 					<input
 						type="text"
-						className="form-control"
+						className="form-control input-colored"
 						id="address"
 						placeholder=""
 					/>
@@ -61,7 +61,7 @@ export default class LodgingForm extends React.Component {
 				addressInput = (
 					<input
 						type="text"
-						className="form-control"
+						className="form-control input-colored"
 						id="address"
 						placeholder=""
 					/>
@@ -75,7 +75,7 @@ export default class LodgingForm extends React.Component {
 						<label htmlFor="hotelName">{nameType} Name:</label>
 						<Geosuggest
 							placeholder="Start typing!"
-							inputClassName="form-control"
+							inputClassName="form-control input-colored"
 							initialValue="NahaNa Hotel"
 							onSuggestSelect={this.onSuggestSelect}
 							location={new google.maps.LatLng(26.2144722, 127.6763)}
@@ -92,7 +92,7 @@ export default class LodgingForm extends React.Component {
 						<label htmlFor="URL">URL:</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control input-colored"
 							id="URL"
 							placeholder=""
 						/>
@@ -103,7 +103,7 @@ export default class LodgingForm extends React.Component {
 							<label className="" htmlFor="checkIn">Check-in Date:</label>
 							<input
 								type="date"
-								className="form-control travel-date-inputs"
+								className="form-control travel-date-inputs input-colored"
 								id="checkIn"
 								placeholder=""
 							/>
@@ -112,7 +112,7 @@ export default class LodgingForm extends React.Component {
 							<label className="" htmlFor="checkOut">Check-out Date:</label>
 							<input
 								type="date"
-								className="form-control travel-date-inputs"
+								className="form-control travel-date-inputs input-colored"
 								id="checkOut"
 								placeholder=""
 							/>
@@ -126,7 +126,7 @@ export default class LodgingForm extends React.Component {
 							<div className="input-group">
 								<span className="input-group-addon">$</span>
 								<input
-									className="form-control"
+									className="form-control input-colored"
 									type="text"
 									id="estimatedCost"
 								/>
@@ -143,7 +143,17 @@ export default class LodgingForm extends React.Component {
 								</label>
 							</div>
 						</div>
-
+					</div>
+					<div className="col-12">
+						<div className="form-group">
+							<label htmlFor="notes">Notes:</label>
+							<input
+								type="text"
+								className="form-control input-colored"
+								id="notes"
+								placeholder=""
+							/>
+						</div>
 					</div>
 					<Modal.Footer>
 						<button type="submit" className="btn btn-primary mr-3">

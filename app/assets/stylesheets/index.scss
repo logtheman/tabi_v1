@@ -175,6 +175,7 @@ body {
 	  position: relative;
 	  padding: 2em 0;
 
+
 	  .activity-name{
 	  	font-weight: 500;
 	  	color: $activity-name-color;
@@ -205,10 +206,15 @@ body {
 	  	}
 	  }
 
-	  .food{
+	  .timeline-row{
+	  	height: $timeline-row-height;
+	  }
+
+	  .food{	  	
 	  	background-color: $food-color;
 	  	border-bottom: 1.5px solid $food-border-color;
 	  	border-top: 1px solid $food-border-color;
+	  	padding-top: 8px;
 	  	&:hover{
 	  		background-color: $food-color-hover;
 	  	}	
@@ -219,6 +225,9 @@ body {
 	  	background-color: $flight-color;
 	  	border-bottom: 1.5px solid $flight-border-color;
 	  	border-top: 1px solid $flight-border-color;
+	  	// padding-top: 1em;
+	  	padding-top: 8px;
+
 	  	&:hover{
 	  		background-color: $flight-color-hover;
 	  	}	
@@ -228,6 +237,8 @@ body {
 	  	background-color: $lodging-color;
 	  	border-bottom: 1.5px solid $lodging-border-color;
 	  	border-top: 1px solid $lodging-border-color;
+	  	padding-top: 0;
+	  	padding-bottom: 1em;
 	  	&:hover{
 	  		background-color: $lodging-color-hover;
 	  	}	
@@ -237,6 +248,9 @@ body {
 	  	background-color: $activity-color;
 	  	border-bottom: 1.5px solid $activity-border-color;
 	  	border-top: 1px solid $activity-border-color;
+	  	padding-top: 8px;
+
+	  	// padding-top: 1em;
 	  	&:hover{
 	  		background-color: $activity-color-hover;
 	  	}	
@@ -301,7 +315,7 @@ body {
 		i {
 
 			margin-left: 14px;
-			margin-top: 11px;
+			margin-top: 5px;
 			position: relative;
 			text-shadow: 0.5px 1px 0 grey;
 			color: white;
@@ -322,7 +336,7 @@ body {
 			background: $activity-border-color;
 			font-size: 1.3em;
 			i {
-				margin-left: 15px;	
+				margin-left: 16px;	
 			}
 		}
 		&.lodging {
@@ -331,6 +345,7 @@ body {
 			top: 10px;
 			i {
 				margin-left: 13px;	
+				margin-top: 12px;
 			}
 		}
 
@@ -427,6 +442,9 @@ form{
 		// border: 0px;
 	}
 	.Select-control{
+		background-color: $form-input-color;
+	}
+	.input-colored{
 		background-color: $form-input-color;
 	}
 	.optional-label{

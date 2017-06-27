@@ -12,6 +12,7 @@ import "react-virtualized-select/styles.css";
 import createFilterOptions from "react-select-fast-filter-options";
 import FlightResultsList from "../components/single_day_components/FlightResultsList_dc";
 import DisplaySelectedFlightsTable from "../components/single_day_components/DisplaySelectedFlightsTable_dc";
+import SpinnerButton from "../components/single_day_components/SpinnerButton_dc";
 import SimpleMap from "./SimpleMap_sc";
 import * as api from "../../utils/utils";
 
@@ -41,6 +42,7 @@ export default class FlightForm extends React.Component {
 			IATAURL:
 				"http://iatacodes.org/api/v6/airlines?api_key=694a8694-e38c-4aea-8370-4a7b78c4adcc",
 			searchResults: null,
+			isloading: false,
 			// selectedDepatureFlight: null,
 			// selectedReturnFlight: null,
 			departureDate: props.departureDate,
@@ -148,40 +150,43 @@ export default class FlightForm extends React.Component {
 
 	handleFlightQuery(e, departureDate, returnDate) {
 		e.preventDefault();
-		// const flightData = {
-		// 	request: {
-		// 		passengers: {
-		// 			adultCount: 1
-		// 		},
-		// 		slice: [
-		// 			{
-		// 				origin: this.state.depatureAirport,
-		// 				destination: this.state.destinationAirport,
-		// 				date: departureDate,
-		// 				permittedDepartureTime: {
-		// 					earliestTime: this.state.flightEarliest,
-		// 					latestTime: this.state.flightLatest
-		// 				},
-		// 				permittedCarrier: this.state.selectedAirlines
-		// 			},
-		// 			{
-		// 				origin: this.state.destinationAirport,
-		// 				destination: this.state.depatureAirport,
-		// 				date: returnDate
-		// 			}
-		// 		],
-		// 		solutions: this.state.maxSearchResult,
-		// 		refundable: false
-		// 	}
-		// };
-		// console.log(flightData);
-		// const response = api
-		// 	.post(this.state.QPXURL, flightData, "", "internal")
-		// 	.then(json => {
-		// 		console.log(json);
-		// 		this.setState({ searchResults: json });
-		// 	});
-		this.setState({ searchResults: SAMPLEFLIGHTS });
+		console.log()
+		const flightData = {
+			request: {
+				passengers: {
+					adultCount: 1
+				},
+				slice: [
+					{
+						origin: this.state.depatureAirport,
+						destination: this.state.destinationAirport,
+						date: this.state.departureDate.format('YYYY-MM-DD'),
+						permittedDepartureTime: {
+							earliestTime: this.state.flightEarliest,
+							latestTime: this.state.flightLatest
+						},
+						permittedCarrier: this.state.selectedAirlines
+					},
+					{
+						origin: this.state.destinationAirport,
+						destination: this.state.depatureAirport,
+						date: this.state.returnDate.format('YYYY-MM-DD'),
+					}
+				],
+				solutions: this.state.maxSearchResult,
+				refundable: false
+			}
+		};
+		console.log(flightData);
+		this.setState({isloading: true});
+		const response = api
+			.post(this.state.QPXURL, flightData, "", "internal")
+			.then(json => {
+					this.setState({isloading: false});
+				console.log(json);
+				this.setState({ searchResults: json });
+			});
+		// this.setState({ searchResults: SAMPLEFLIGHTS });
 	}
 
 	handleTimeOfDayChange(tod) {
@@ -279,9 +284,8 @@ export default class FlightForm extends React.Component {
 				<button type="submit" className="btn btn-primary mr-3"> 
 					Proceed with Selected
 				</button></NavLink>) :
-			 (<button type="submit" className="btn btn-primary mr-3" onClick={this.handleFlightQuery}> 
-					Search Flights
-				</button>);
+			 (<SpinnerButton loading={this.state.isloading} handleFlightQuery={this.handleFlightQuery}>
+			 	Search Flights </SpinnerButton>);
 
 		return (
 			<div>

@@ -19,7 +19,7 @@ export default class SimpleMap extends Component {
     const Markers =
       this.props.locations &&
       this.props.locations.map((marker, index) => {
-        if (index === this.props.activeLocation) {
+        if (marker.ID === this.props.activeLocation) {
           center.lat = marker.lat;
           center.lng = marker.lng;
         }

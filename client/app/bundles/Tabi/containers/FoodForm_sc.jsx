@@ -46,7 +46,7 @@ export default class FoodForm extends React.Component {
 				addressInput = (
 					<input
 						type="text"
-						className="form-control"
+						className="form-control input-colored"
 						id="address"
 						placeholder=""
 					/>
@@ -120,7 +120,7 @@ export default class FoodForm extends React.Component {
 						<label htmlFor="name">{nameType} Name:</label>
 						<Geosuggest
 							placeholder="Start typing!"
-							inputClassName="form-control"
+							inputClassName="form-control input-colored"
 							initialValue="やんばるダイニング 松の古民家"
 							onSuggestSelect={this.onSuggestSelect}
 							location={new google.maps.LatLng(26.2144722, 127.6763)}
@@ -136,7 +136,7 @@ export default class FoodForm extends React.Component {
 						<label htmlFor="URL">URL:</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control input-colored"
 							id="URL"
 							placeholder=""
 						/>
@@ -147,7 +147,7 @@ export default class FoodForm extends React.Component {
 							<label className="" htmlFor="from">From: </label>
 							<input
 								type="time"
-								className="form-control travel-date-inputs"
+								className="form-control travel-date-inputs input-colored"
 								id="from"
 								value="12:00"
 							/>
@@ -156,7 +156,7 @@ export default class FoodForm extends React.Component {
 							<label className="" htmlFor="to">To:</label>
 							<input
 								type="time"
-								className="form-control travel-date-inputs"
+								className="form-control travel-date-inputs input-colored"
 								id="to"
 								value="13:00"
 							/>
@@ -215,7 +215,7 @@ export default class FoodForm extends React.Component {
 						<label htmlFor="notes">Notes:</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control input-colored"
 							id="notes"
 							placeholder=""
 						/>

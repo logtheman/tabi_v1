@@ -32,10 +32,10 @@ export default class FoodForm extends React.Component {
 		console.log(this.props);
 
 		switch (this.props.activityType) {
-			case "":
-				nameType = "Activity";
-				addressInput = <div className="highlight">{this.state.address}</div>;
-				break;
+				// case "":
+				// 	nameType = "Activity";
+				// 	addressInput = <div className="highlight">{this.state.address}</div>;
+				// 	break;
 			// case 'AirBnB':
 			// 	nameType = 'AirBnB Host';
 			//   addressInput = (<input type="text" className="form-control" id="address" placeholder="" />);
@@ -46,7 +46,7 @@ export default class FoodForm extends React.Component {
 				addressInput = (
 					<input
 						type="text"
-						className="form-control"
+						className="form-control input-colored"
 						id="address"
 						placeholder=""
 					/>
@@ -61,14 +61,14 @@ export default class FoodForm extends React.Component {
 						<label htmlFor="activityType">Activity Type:</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control input-colored"
 							id="activityType"
 							placeholder=""
 						/>
 					</div>
 
 					<div className="form-group">
-						<label htmlFor="address">{nameType} Address: </label>
+						<label htmlFor="address">{nameType} Location: </label>
 						{" "} {addressInput}
 					</div>
 
@@ -76,7 +76,7 @@ export default class FoodForm extends React.Component {
 						<label htmlFor="URL">URL:</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control input-colored"
 							id="URL"
 							placeholder=""
 						/>
@@ -87,7 +87,7 @@ export default class FoodForm extends React.Component {
 							<label className="" htmlFor="from">From: </label>
 							<input
 								type="time"
-								className="form-control travel-date-inputs"
+								className="form-control travel-date-inputs input-colored"
 								id="from"
 								value="12:00"
 							/>
@@ -96,7 +96,7 @@ export default class FoodForm extends React.Component {
 							<label className="" htmlFor="to">To:</label>
 							<input
 								type="time"
-								className="form-control travel-date-inputs"
+								className="form-control travel-date-inputs input-colored"
 								id="to"
 								value="13:00"
 							/>
@@ -155,7 +155,7 @@ export default class FoodForm extends React.Component {
 						<label htmlFor="notes">Notes:</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control input-colored"
 							id="notes"
 							placeholder=""
 						/>
