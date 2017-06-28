@@ -1,4 +1,6 @@
 import React from "react";
+import AnimateHeight from 'react-animate-height';
+import MilestoneDetailRow from './MilestoneDetailRow_dc';
 
 const Milestone = props => {
   let iconString = "";
@@ -20,27 +22,42 @@ const Milestone = props => {
       default:
         iconString = "fa fa-map-marker fa-2x";
   }
+  console.log(props.height);
+
+  const showContent = props.showDetail
+    ? <MilestoneDetailRow
+        info={props.info}
+        additionalTimeInfo={additionalTimeInfo}
+      >
+        {props.children}
+      </MilestoneDetailRow>
+    : <ul className="list-inline">
+        <li className="activity-time">
+          {props.info.time}
+          {additionalTimeInfo}
+        </li>
+        <li className="activity-name">
+          {props.info.description}
+          {props.children}
+        </li>
+      </ul>;
 
   return (
+    <AnimateHeight
+      duration={ 500 }
+      height={ props.height }>
     <div className={`${props.info.type} timeline-row`}>
       <div className="timeline-block">
         <div className={`timeline-activity-marker ${props.info.type}`}>
           <i className={iconString} aria-hidden="true" />
         </div>
         <div className="timeline-content">
-          <ul className="list-inline">
-            <li className="activity-time">
-              {props.info.time}
-              {additionalTimeInfo}
-            </li>
-            <li className="activity-name">
-              {props.info.description}
-              {props.children}
-            </li>
-          </ul>
+          {showContent}
         </div>
       </div>
     </div>
+  </AnimateHeight>
+
   );
 };
 

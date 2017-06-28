@@ -23,6 +23,7 @@ export default class SingleDay extends React.Component {
 			dayNum: 1, //placeholder
 			showAddMilestone: "",
 			activeMilestoneIndex: null,
+			openMilestoneIndex: null,
 			modalTitle: "What would you like to plan?"
 		};
 		document.body.style.overflowY = "scroll";
@@ -32,11 +33,20 @@ export default class SingleDay extends React.Component {
 		this.handleModalHeaderChange = this.handleModalHeaderChange.bind(this);
 		this.handleMouseEnterMilestone = this.handleMouseEnterMilestone.bind(this);
 		this.handleMouseLeaveMilestone = this.handleMouseLeaveMilestone.bind(this);
+		this.handleSelectMilestone = this.handleSelectMilestone.bind(this);
 	}
 
 	handleChangeDay(dayChange) {
 		//TODO: ADD IN CHECK FOR TRIP LENGTH
 		this.setState({ dayNum: this.state.dayNum + dayChange });
+	}
+
+	handleSelectMilestone(ID){
+		if(ID === this.state.openMilestoneIndex){
+			this.setState({openMilestoneIndex: null});
+		}else{
+			this.setState({openMilestoneIndex: ID});
+		}
 	}
 
 	handleAddMilestone(type, title) {
@@ -93,6 +103,8 @@ export default class SingleDay extends React.Component {
 									handleAddMilestone={this.handleAddMilestone}
 									handleMouseEnterMilestone={this.handleMouseEnterMilestone}
 									handleMouseLeaveMilestone={this.handleMouseLeaveMilestone}
+									handleSelectMilestone={this.handleSelectMilestone}
+									selectedRow={this.state.openMilestoneIndex}
 								/>
 							</div>
 						</div>

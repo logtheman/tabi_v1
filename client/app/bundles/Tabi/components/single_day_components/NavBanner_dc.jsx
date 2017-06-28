@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styles from '../../../../stylesheets/navbar.scss';
+// import styles from '../../../../stylesheets/navbar.scss';
 
 const NavBanner = () => {
 	// export default class NavBanner extends React.Component {
