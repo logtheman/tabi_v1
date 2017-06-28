@@ -22,7 +22,6 @@ const Milestone = props => {
       default:
         iconString = "fa fa-map-marker fa-2x";
   }
-  console.log(props.height);
 
   const showContent = props.showDetail
     ? <MilestoneDetailRow
@@ -45,16 +44,18 @@ const Milestone = props => {
   return (
     <AnimateHeight
       duration={ 500 }
-      height={ props.height }>
-    <div className={`${props.info.type} timeline-row`}>
-      <div className="timeline-block">
-        <div className={`timeline-activity-marker ${props.info.type}`}>
-          <i className={iconString} aria-hidden="true" />
+      height={ props.height }
+      className={`${props.info.type}`}
+      >
+       <div className="timeline-row">
+        <div className="timeline-block">
+          <div className={`timeline-activity-marker ${props.info.type}`}>
+            <i className={iconString} aria-hidden="true" />
+          </div>
+          <div className="timeline-content">
+            {showContent}
+          </div>
         </div>
-        <div className="timeline-content">
-          {showContent}
-        </div>
-      </div>
     </div>
   </AnimateHeight>
 

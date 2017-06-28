@@ -12,15 +12,18 @@ const MilestoneDetailRow = (props) => {
 		  </li>
 		  <li className="activity-name">
 		    {props.info.description}
-		    <br />
-		    {props.children}
-		    <br />
-		    {props.info.location}
-		    <br />
-		    {props.info.notes}
-		    <br />
-		    {props.info.duration}
 		  </li>
+		 	<li className="activity-name">
+			  <b>Duration: </b>{props.info.duration}		    
+		 	</li>
+	 	 	<li className="activity-name">
+	 		  <b>Address: </b>{props.info.location}	    
+	 	 	</li>
+ 	 	 	<li className="activity-name">
+ 	 		  <b>Notes: </b>{props.info.notes}	    
+ 	 	 	</li>
+
+		  {props.children}
 		</ul>
 		</div>
 	);

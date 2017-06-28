@@ -207,7 +207,7 @@ body {
 	  }
 
 	  .timeline-row{
-	  	height: $timeline-row-height;
+	  	min-height: $timeline-row-height;
 	  }
 
 	  .food{	  	
@@ -219,7 +219,6 @@ body {
 	  		background-color: $food-color-hover;
 	  	}	
 	  }
-
 
 	  .flight{
 	  	background-color: $flight-color;
