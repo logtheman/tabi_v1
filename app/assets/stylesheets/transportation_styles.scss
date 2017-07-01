@@ -1,0 +1,37 @@
+@import 'variables'; // colors, fonts etc...
+
+.transportation-row{
+	background-color: white;
+	font-size: 0.8em;
+	padding-left: $timeline-offset - 8;
+	color: $transportion-color;
+
+	.transportion-content{
+		padding-top: 1em;
+		padding-bottom: 1em;
+		margin: 1em 0;
+
+	i{
+		&.fa-blind{
+			padding-left: 5px;
+		}
+		&.fa-bus{
+			padding-left: 2px;
+		}
+
+	}
+
+		.transportion-detail{
+			font-size: 1.2em;
+		}
+		.left-padding{
+			padding-left: 1.4em;
+		}
+		.from-to{
+			color: darkgray;
+		}
+	}
+
+
+
+}

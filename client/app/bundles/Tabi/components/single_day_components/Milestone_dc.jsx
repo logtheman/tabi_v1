@@ -9,18 +9,18 @@ const Milestone = props => {
     case 'food':
       iconString = "fa fa-cutlery fa-2x";
       break;
-      case 'lodging':
-        iconString = "fa fa-bed fa-2x";
-        additionalTimeInfo = 
-          (<div>
-            {props.info.duration} in {props.info.locationComponents.locality}
-           </div>);
-        break;
-      case 'flight':
-        iconString = "fa fa-plane fa-2x";
-        break;
-      default:
-        iconString = "fa fa-map-marker fa-2x";
+    case 'lodging':
+      iconString = "fa fa-bed fa-2x";
+      additionalTimeInfo = 
+        (<div>
+          {props.info.duration} in {props.info.locationComponents.locality}
+         </div>);
+      break;
+    case 'flight':
+      iconString = "fa fa-plane fa-2x";
+      break;
+    default:
+      iconString = "fa fa-map-marker fa-2x";
   }
 
   const showContent = props.showDetail

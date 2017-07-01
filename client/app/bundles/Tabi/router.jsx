@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import TransitionGroup from "react-transition-group/TransitionGroup";
+
 
 import {
   HashRouter,
@@ -12,6 +14,10 @@ import DayView from './components/single_day_components/DayView'
 import SingleDay from './containers/SingleDay_sc'
 import App from './containers/App_sc'
 
+const firstChild = props => {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
+};
 
 const routes = (
 	<div>
@@ -21,4 +27,4 @@ const routes = (
 	</div>
 )
 
-export default routes
+export default routes;

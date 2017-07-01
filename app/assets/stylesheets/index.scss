@@ -3,7 +3,6 @@
 // @import 'mixins'; // custom mixins
 @import 'layouts'; // responsive grid and media queries
 
-
 html{
 
 	background-color: white;
@@ -262,9 +261,13 @@ body {
 	.timeline-block {
 		position: relative;
 		margin: 2em 0;
-		min-height: $activity-min-height;
-		padding-top: 5px;
 		font-size: $activity-font-size;
+
+		&.activity, &.lodging, &.flight, &.food{
+			min-height: $activity-min-height;
+			padding-top: 5px;
+
+		}
 
 		&:first-child {
 			margin-top: 0;

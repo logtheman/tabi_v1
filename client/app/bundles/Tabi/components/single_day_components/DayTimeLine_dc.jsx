@@ -1,5 +1,9 @@
 import React from "react";
+import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
+
 import Milestone from "./Milestone_dc";
+import Transportation from "./Transportation_dc";
+
 
 const spacingMultiplier = 20;
 
@@ -8,7 +12,12 @@ const DayTimeLine = props => {
 	//return all on the timeline activities to be listed after the day long activities
 	const lodging = props.dayInfo.filter(act => { return (act.type === 'lodging') })
 		.map((act, i) => {
-			const rowHeight = (props.selectedRow === act.ID) ? 'auto' : 75;
+			let rowHeight = 73; //default height
+			let showDetail = false;
+			if(props.selectedRow === act.ID){
+				rowHeight = 'auto';
+				showDetail = true;
+			}  
 			return (
 				<div
 					key={act.ID}
@@ -16,7 +25,7 @@ const DayTimeLine = props => {
 					onMouseLeave={props.handleMouseLeaveMilestone}
 					onClick={() => props.handleSelectMilestone(act.ID)}
 				>
-					<Milestone info={act} height={rowHeight}/>
+					<Milestone info={act} height={rowHeight} showDetail={showDetail}/>
 				</div>
 			);
 		});
@@ -36,23 +45,37 @@ const DayTimeLine = props => {
 				rowHeight = 'auto';
 				showDetail = true;
 			}  
-			return (
-				<div
-					key={act.ID}
+
+			const timelineComponent = (act.type === 'transportation') ? (
+				<div>
+					<Transportation info={act}/>
+					<div style={{ height: space + "px" }} />
+				</div>
+				) :
+			(<div
 					onMouseEnter={() => props.handleMouseEnterMilestone(act.ID)}
 					onMouseLeave={props.handleMouseLeaveMilestone}
 					onClick={() => props.handleSelectMilestone(act.ID)}
 				>
-
-					
 					<Milestone info={act} height={rowHeight} showDetail={showDetail}/>
 					<div style={{ height: space + "px" }} />
+				</div>);
+
+			return (
+				<div key={act.ID}>
+					{timelineComponent}
 				</div>
 			);
 	});
 
 	return (
-		<div>
+		<CSSTransitionGroup
+		  transitionName="activityRow"
+		  component="div"
+		  transitionEnterTimeout={500}
+		  transitionLeaveTimeout={300}
+		  transitionAppear={true}
+		  transitionAppearTimeout={500}>
 			<div className="timeline-header">
 				<h3 className="">Lodging</h3>
 			</div>
@@ -65,7 +88,7 @@ const DayTimeLine = props => {
 			<div className="timeline">
 				{dayTimeline}
 			</div>
-		</div>
+		</CSSTransitionGroup>
 	);
 };
 

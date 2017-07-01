@@ -23,6 +23,9 @@ export default class SimpleMap extends Component {
           center.lat = marker.lat;
           center.lng = marker.lng;
         }
+        if(marker.type === 'transportation'){
+          return; //to build out logic for lines between markers
+        }
         //TODO : add lines between locations
         // let plotLine = null;
         // if(index > 0){

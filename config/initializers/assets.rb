@@ -20,6 +20,9 @@ Rails.application.config.assets.version = '1.0'
 # Add folder with webpack generated assets to assets.paths
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "webpack")
 Rails.application.config.assets.precompile += %w( react-select.css )
+Rails.application.config.assets.precompile += %w( transitions_styles.css )
+Rails.application.config.assets.precompile += %w( transportation_styles.css )
+
 
 Rails.application.config.assets.precompile += %w( index.css )
 Rails.application.config.assets.precompile += %w( font-awesome/css/font-awesome.min.css )

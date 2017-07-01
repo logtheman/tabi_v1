@@ -16,7 +16,7 @@ import SimpleMap from "./SimpleMap_sc";
 
 import FAKEDATA from "../fake_data/day_data";
 
-export default class SingleDay extends React.Component {
+class SingleDay extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -90,44 +90,55 @@ export default class SingleDay extends React.Component {
 				<div className="row navbar-padding">
 					<NavBanner />
 				</div>
-				<div className="row">
-					<div className="col-md-7">
-						<div className="single-day-container">
-							<DayHeader
-								dayNum={this.state.dayNum}
-								handleChangeDay={this.handleChangeDay}
-							/>
-							<div className="ml-1">
-								<DayTimeLine
-									dayInfo={FAKEDATA[this.state.dayNum - 1]}
-									handleAddMilestone={this.handleAddMilestone}
-									handleMouseEnterMilestone={this.handleMouseEnterMilestone}
-									handleMouseLeaveMilestone={this.handleMouseLeaveMilestone}
-									handleSelectMilestone={this.handleSelectMilestone}
-									selectedRow={this.state.openMilestoneIndex}
+				<CSSTransitionGroup
+				  transitionName="componentTransitionFade"
+				  component="div"
+				  transitionEnterTimeout={500}
+				  transitionLeaveTimeout={500}
+				  transitionAppear={true}
+				  transitionAppearTimeout={1000}>
+					<div className="row">
+						<div className="col-md-7">
+							<div className="single-day-container">
+								<DayHeader
+									dayNum={this.state.dayNum}
+									handleChangeDay={this.handleChangeDay}
 								/>
+								<div className="ml-1">
+									<DayTimeLine
+										dayInfo={FAKEDATA[this.state.dayNum - 1]}
+										handleAddMilestone={this.handleAddMilestone}
+										handleMouseEnterMilestone={this.handleMouseEnterMilestone}
+										handleMouseLeaveMilestone={this.handleMouseLeaveMilestone}
+										handleSelectMilestone={this.handleSelectMilestone}
+										selectedRow={this.state.openMilestoneIndex}
+									/>
+								</div>
 							</div>
 						</div>
+						<div className="col-md-5 map-column">
+								<div className="align-center">
+									<AddMilestone
+										viewType="singleDay"
+										handleAddMilestone={this.handleAddMilestone}
+									/>
+								</div>
+								<div className="single-day-map">
+									<SimpleMap
+										locations={FAKEDATA[this.state.dayNum - 1]}
+										activeLocation={this.state.activeMilestoneIndex}
+										center={center}
+									/>
+							</div>
+						</div>						
 					</div>
-					<div className="col-md-5 map-column">
-						<div className="align-center">
-							<AddMilestone
-								viewType="singleDay"
-								handleAddMilestone={this.handleAddMilestone}
-							/>
-						</div>
-						<div className="single-day-map">
-							<SimpleMap
-								locations={FAKEDATA[this.state.dayNum - 1]}
-								activeLocation={this.state.activeMilestoneIndex}
-								center={center}
-							/>
-						</div>
-					</div>
-				</div>
+				</CSSTransitionGroup>
 			</div>
 		);
 	}
 }
+
+// const SingleDay = AnimatedWrapper(SingleDayComponent);
+export default SingleDay;
 
 // <LodgingRow lodgingInfo={FAKEDATA[this.state.dayNum - 1][0]} />

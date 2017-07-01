@@ -1,0 +1,71 @@
+
+
+/************************* FADE IN **********************************************************/
+
+.componentTransitionFade-appear {
+  opacity: 0.01;
+}
+
+.componentTransitionFade-appear.componentTransitionFade-appear-active {
+  opacity: 1;
+  transition: opacity 800ms ease-in-out;
+
+}
+
+/************************* TRANSITION DOWN **********************************************************/
+
+
+.componentTransitionDown-appear {
+  opacity: 0.01;
+  transform: translate3d(0, -50%, 0);
+}
+
+.componentTransitionDown-appear.componentTransitionDown-appear-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: transform 300ms ease-in-out;
+}
+
+/************************* TRANSITON FROM RIGHT **********************************************************/
+
+
+.componentTransitionRight-appear {
+  opacity: 0.01;
+  transform: translate(-100%);
+}
+
+.componentTransitionRight-appear.componentTransitionRight-appear-active {
+  opacity: 1;
+
+  transform: translate(0%);
+  transition: all 800ms ease-in-out;
+}
+
+/************************* TRANSITON FROM LEFT **********************************************************/
+
+
+.componentTransitionleft-appear {
+  opacity: 0.01;
+  transform: translate(100%);
+}
+
+.componentTransitionleft-appear.componentTransitionRight-appear-active {
+  opacity: 1;
+
+  transform: translate(0%);
+  transition: all 800ms ease-in-out;
+}
+
+
+
+
+
+
+/*.activityRow-appear {
+  opacity: 0.01;
+}
+
+.activityRow-appear.activityRow-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}*/
