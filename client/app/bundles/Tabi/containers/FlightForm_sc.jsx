@@ -150,7 +150,6 @@ export default class FlightForm extends React.Component {
 
 	handleFlightQuery(e, departureDate, returnDate) {
 		e.preventDefault();
-		console.log()
 		const flightData = {
 			request: {
 				passengers: {

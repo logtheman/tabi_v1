@@ -58,7 +58,7 @@ export default class SimpleMap extends Component {
       });
 
     return (
-      <GoogleMapReact center={center} defaultZoom={this.state.zoom}>
+      <GoogleMapReact center={center} defaultZoom={this.state.zoom} >
         {Markers}
       </GoogleMapReact>
     );

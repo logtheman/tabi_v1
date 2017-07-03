@@ -153,6 +153,7 @@ body {
 	background-color: white;
 	min-height: 400px;
 	padding-left: 10px;
+	overflow-y: scroll;
 
 	.bottom-border{
 		border-bottom: 1px solid #777;
@@ -393,7 +394,10 @@ body {
 
 	.map-column{
 		min-height: 500px;
-
+		// position: fixed;
+		// top: $navbar-height;
+		// right: 0;
+		// z-index: 5;
 
 		.add-activity-buttons{
 			border: 2px solid $add-activity-border;
@@ -409,20 +413,17 @@ body {
 		@media(min-width: 900px){
 
 		}
-
 		.single-day-map{
 			height: 60%;
 			// margin-top: $activity-buttons-height + 20;
 			margin-right: 10px;
 			margin-left: 10px;
 			border: 1px solid black;
-			min-height: 500px;
+			min-height: 500px - $navbar-height - 20;
+
 		}
 
 	}
-
-
-
 
 
 /********************** Form Styles ****************************************/

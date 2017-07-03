@@ -22,15 +22,7 @@ const simpleMarkerStyle = (props) => {
       backgroundColor = '#d68c2f';
   
   }
-  // if(props.type === 'food'){
-  //   backgroundColor = '#75ce66';    
-  // }else if(props.type === 'activity'){
-  //   backgroundColor = '#FFAD46';
-  // }else if(props.type === 'lodging'){
-  //   backgroundColor = '#9FE1E7'
-  // }else if(props.type === 'flight'){
-  //   backgroundColor ='#FA573C'
-  // }
+
 
 
 
@@ -73,16 +65,7 @@ const SimpleMarkerIcon = (props) => {
       iconString = 'fa fa-map-marker fa-1x';
  
   }
-  // if(props.type === 'food'){
-  //   iconString = 'fa fa-cutlery fa-1x';
-  // }else if(props.type === 'activity'){
-  //   iconString = 'fa fa-map-marker fa-1x';
-  // }else if(props.type === 'lodging'){
-  //   iconString = 'fa fa-bed fa-1x';
-  // }else if(props.type === 'flight'){
-  //   iconString = 'fa fa-plane fa-1x';
 
-  // }
 
   return (
     <div className={`timeline-activity-marker ${props.type}`}>

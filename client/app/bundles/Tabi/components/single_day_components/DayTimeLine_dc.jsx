@@ -14,16 +14,16 @@ const DayTimeLine = props => {
 		.map((act, i) => {
 			let rowHeight = 73; //default height
 			let showDetail = false;
-			if(props.selectedRow === act.ID){
+			if(props.selectedRow === act.id){
 				rowHeight = 'auto';
 				showDetail = true;
 			}  
 			return (
 				<div
-					key={act.ID}
-					onMouseEnter={() => props.handleMouseEnterMilestone(act.ID)}
+					key={act.id}
+					onMouseEnter={() => props.handleMouseEnterMilestone(act.id)}
 					onMouseLeave={props.handleMouseLeaveMilestone}
-					onClick={() => props.handleSelectMilestone(act.ID)}
+					onClick={() => props.handleSelectMilestone(act.id)}
 				>
 					<Milestone info={act} height={rowHeight} showDetail={showDetail}/>
 				</div>
@@ -41,28 +41,28 @@ const DayTimeLine = props => {
 			: 0; //find difference in hours between activities and add space after the first Milestone
 			let rowHeight = 73; //default height
 			let showDetail = false;
-			if(props.selectedRow === act.ID){
+			if(props.selectedRow === act.id){
 				rowHeight = 'auto';
 				showDetail = true;
 			}  
 
 			const timelineComponent = (act.type === 'transportation') ? (
-				<div>
-					<Transportation info={act}/>
+				<div id={`TA${act.id}`} onClick={() => props.handleAddTransportation(act.id)}>
+					<Transportation info={act} />
 					<div style={{ height: space + "px" }} />
 				</div>
 				) :
 			(<div
-					onMouseEnter={() => props.handleMouseEnterMilestone(act.ID)}
+					onMouseEnter={() => props.handleMouseEnterMilestone(act.id)}
 					onMouseLeave={props.handleMouseLeaveMilestone}
-					onClick={() => props.handleSelectMilestone(act.ID)}
+					onClick={() => props.handleSelectMilestone(act.id)}
 				>
 					<Milestone info={act} height={rowHeight} showDetail={showDetail}/>
 					<div style={{ height: space + "px" }} />
 				</div>);
 
 			return (
-				<div key={act.ID}>
+				<div key={act.id}>
 					{timelineComponent}
 				</div>
 			);

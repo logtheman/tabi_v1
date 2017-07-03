@@ -1,7 +1,9 @@
 import React from "react";
+import AddTransportationContainer from "../../containers/AddTransportationContainer_sc";
+
+
 
 const Transportation = props => {
-  console.log("adding transportation");
   let iconString = "";
   switch (props.info.transportationType) {
     case "bike":

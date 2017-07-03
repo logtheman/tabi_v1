@@ -1,6 +1,10 @@
 
 import React from 'react';
 
+export function findByID(milestone, ID){
+  return milestone.ID === ID;
+}
+
 export function getDate(){
 	const today = new Date();
 	let dd = today.getDate();
@@ -26,7 +30,7 @@ export function getDateString(dateTime){
 	return d.toLocaleString();
 }
 
-function _fetch(url, options) {
+export function _fetch(url, options) {
   return fetch(url, options)
     .then(response=>{
       return response.json();
@@ -54,3 +58,14 @@ export function post(url, payload, options, type) {
   return _fetch(url, Object.assign({}, defaultOptions, options));
 }
 
+export function get(url, options={}) {
+
+  const defaultOptions = {
+    headers: {
+      'Accept':       'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+
+  return _fetch(url, Object.assign({}, defaultOptions, options));
+}

@@ -1,6 +1,6 @@
 const FAKEDATA = [
 	[{
-			ID: 1,
+			id: 1,
 			description: 'NahaNa Hotel & Spa',
 			type: 'lodging',
 			duration: '1 night',
@@ -23,7 +23,7 @@ const FAKEDATA = [
 			locationLink: 'https://www.google.com.tw/maps?q=1-5+Kume+2+Chome,+Naha,+Okinawa-ken,+900-0033+Japan&um=1&ie=UTF-8&sa=X&ved=0ahUKEwjZ9ry15I_UAhXMNpQKHYBtDDsQ_AUICigB',
 		},
 		{
-			ID: 2,
+			id: 2,
 			description: 'Arrival in Naha',
 			type: 'flight',
 			startAt: "2017-05-18 07:15:00",
@@ -41,7 +41,7 @@ const FAKEDATA = [
 
 		},
 		{
-			ID: 11,
+			id: 11,
 			type: 'transportation',
 			transportationType: 'taxi',
 			startLocation: {
@@ -65,7 +65,7 @@ const FAKEDATA = [
 			estimatedCost: '$15',
 		},
 		{
-			ID: 12,
+			id: 12,
 			type:'activity',
 			allDay: false,
 			startAt: "2017-05-18 10:00:00",
@@ -82,7 +82,7 @@ const FAKEDATA = [
 			notes: 'Pre-paid on United card'
 		},
 		{
-			ID: 13,
+			id: 13,
 			type: 'transportation',
 			transportationType: 'car',
 			startLocation: {
@@ -106,7 +106,7 @@ const FAKEDATA = [
 			estimatedCost: '$11 in Tolls',
 		},
 		{
-			ID: 3,
+			id: 3,
 			type:'food',
 			allDay: false,
 			startAt: "2017-05-18 12:00:00",
@@ -124,7 +124,7 @@ const FAKEDATA = [
 			notes: ''
 		},
 		{
-			ID: 4,
+			id: 4,
 			type:'activity',
 			allDay: false,
 			startAt: "2017-05-18 14:00:00",
@@ -141,7 +141,7 @@ const FAKEDATA = [
 			notes: 'Cost about $10 per person'
 		},
 		{
-			ID: 14,
+			id: 14,
 			type: 'transportation',
 			transportationType: 'walk',
 			startLocation: {
@@ -165,7 +165,7 @@ const FAKEDATA = [
 			estimatedCost: null,
 		},
 		{
-			ID: 5,
+			id: 5,
 			type:'activity',
 			allDay: false,
 			startAt: "2017-05-18 15:00:00",
@@ -182,7 +182,7 @@ const FAKEDATA = [
 			notes: 'Cost about $18 per person and can be bought from Family Mart'
 		},
 		{
-			ID: 6,
+			id: 6,
 			type:'food',
 			allDay: false,
 			startAt: "2017-05-18 19:00:00",
@@ -202,7 +202,7 @@ const FAKEDATA = [
 		},
 	],
 	[{
-			ID: 7,
+			id: 7,
 			description: 'Nago-Shi AirBnB',
 			type: 'lodging',
 			length: '1 night',
@@ -227,7 +227,7 @@ const FAKEDATA = [
 			locationLink: 'https://www.google.com/maps/place/Japan,+%E3%80%92905-0021+Okinawa-ken,+Nago-shi,+Agarie,+5+Chome%E2%88%92%EF%BC%91%EF%BC%97%E2%88%9210/@26.5782368,127.9824358,17z/data=!3m1!4b1!4m5!3m4!1s0x34e45583c588a183:0xef615a150ee0a376!8m2!3d26.5782368!4d127.9846245',
 		},
 		{
-			ID: 8,
+			id: 8,
 			type:'activity',
 			allDay: false,
 			startAt: "2017-05-19 9:30:00",
@@ -244,7 +244,7 @@ const FAKEDATA = [
 			notes: ''
 		},
 		{
-			ID: 9,
+			id: 9,
 			type:'food',
 			allDay: false,
 			startAt: "2017-05-19 12:00:00",
@@ -260,7 +260,7 @@ const FAKEDATA = [
 			notes: 'Pizza and pottery!'
 		},
 		{
-			ID: 10,
+			id: 10,
 			type:'activity',
 			allDay: false,
 			startAt: "2017-05-19 14:00:00",
