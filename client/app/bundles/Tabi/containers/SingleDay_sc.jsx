@@ -59,7 +59,7 @@ class SingleDay extends React.Component {
 	}
 
 	onScrollY(){
-		if(window.outerWidth >= 845){ //break point for two columns
+		if(window.outerWidth >= 1085){ //break point for two columns at lg
 			this.setState({mapColumnOffset: window.scrollY});
 		}else{
 			this.setState({mapColumnOffset: 0});
@@ -134,6 +134,8 @@ class SingleDay extends React.Component {
 				/>
 			: null;
 
+		const mapHeight = (window.innerHeight - 190); //190 is the current height of the banner and button container
+
 		return (
 			<div>
 				{displayModal}
@@ -149,7 +151,7 @@ class SingleDay extends React.Component {
 					transitionAppearTimeout={1000}
 				>
 					<div className="row">
-						<div className="col-md-7">
+						<div className="col-lg-7">
 							<div className="single-day-container">
 								<DayHeader
 									dayNum={this.state.dayNum}
@@ -168,14 +170,14 @@ class SingleDay extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className="col-md-5 map-column" style={{marginTop: `${this.state.mapColumnOffset}px`}} >
+						<div className="col-lg-5 map-column" style={{marginTop: `${this.state.mapColumnOffset}px`}} >
 							<div className="align-center">
 								<AddMilestone
 									viewType="singleDay"
 									handleAddMilestone={this.handleAddMilestone}
 								/>
 							</div>
-							<div className="single-day-map">
+							<div className="single-day-map" style={{height: mapHeight}}> 
 								<SimpleMap
 									locations={FAKEDATA[this.state.dayNum - 1]}
 									activeLocation={this.state.activeMilestoneIndex}
