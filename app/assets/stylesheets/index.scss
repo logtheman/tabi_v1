@@ -153,7 +153,6 @@ body {
 	background-color: white;
 	min-height: 400px;
 	padding-left: 10px;
-	overflow-y: scroll;
 
 	.bottom-border{
 		border-bottom: 1px solid #777;
@@ -394,10 +393,10 @@ body {
 
 	.map-column{
 		min-height: 500px;
-		// position: fixed;
-		// top: $navbar-height;
-		// right: 0;
-		// z-index: 5;
+		transition-property: margin;
+		transition-duration: 0.2s;
+		// transition-delay: 0.1s;
+		transition-timing-function: linear;
 
 		.add-activity-buttons{
 			border: 2px solid $add-activity-border;

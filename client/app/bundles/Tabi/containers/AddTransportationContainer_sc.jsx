@@ -1,11 +1,12 @@
 import React from "react";
+import onClickOutside from 'react-onclickoutside'
 import { Modal } from "react-bootstrap";
 import * as api from "../../utils/utils";
 import ShowTransportationOption from "../components/single_day_components/ShowTransportationOption_dc";
 
 
 
-export default class AddTransportationContainer extends React.Component {
+class AddTransportationContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -31,6 +32,10 @@ export default class AddTransportationContainer extends React.Component {
 		this.handleTransportationQuery = this.handleTransportationQuery.bind(this);
 		this.queryCallback= this.queryCallback.bind(this);
 
+	}
+
+	handleClickOutside(evt) {
+	  this.props.handleRemoveTransportationContainer();
 	}
 
 	componentWillMount(){
@@ -85,12 +90,16 @@ export default class AddTransportationContainer extends React.Component {
 
 				
 				const showOptions =(
-						<ShowTransportationOption 
-							transportationType={type}
-							distance={distance}
-							duration={duration}
-							estimatedCost={cost}
-						/>
+						<div key={type}>
+							<ShowTransportationOption 
+								transportationType={type}
+								distance={distance}
+								duration={duration}
+								estimatedCost={cost}
+								selectedType={this.state.transportation.transportationType}
+							/>
+						</div>
+
 					);
 
 				this.setState({transportationOptions: [...this.state.transportationOptions, showOptions]});
@@ -123,27 +132,17 @@ export default class AddTransportationContainer extends React.Component {
 	    		/>
 	    		);
 
-	    	console.log("Show Uptions: ",showOptions);
 	    	this.setState({transportationOptions: [...this.state.transportationOptions, showOptions]});
 	    }
 	 }
 
 	render() {
 
-		const miles = "234 miles";
-		const duration = "5 hours";
-
-
-
-		// this.handleTransportationQuery('driving');
-		console.log("add transportation container");
 		return (
 			<div
 				id="transportation-container"
 				className="add-transportation-container"
 				style={this.state.styles}
-				onMouseEnter={() => this.props.handleEnterAddTransportation()}
-				onMouseLeave={() => this.props.handleLeaveAddTransportation()}
 			>
 				<Modal.Body className="pt-2">
 					{this.state.transportationOptions}
@@ -152,3 +151,5 @@ export default class AddTransportationContainer extends React.Component {
 		);
 	}
 }
+
+export default onClickOutside(AddTransportationContainer);

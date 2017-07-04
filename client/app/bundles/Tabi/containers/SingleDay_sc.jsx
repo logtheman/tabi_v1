@@ -1,6 +1,7 @@
 //External libraries
 import React from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
+import _ from 'lodash'
 
 //Dumb Components
 import NavBanner from "../components/single_day_components/NavBanner_dc";
@@ -31,7 +32,8 @@ class SingleDay extends React.Component {
 				top: "300px",
 				left: "100px",
 			},
-			modalTitle: "What would you like to plan?"
+			modalTitle: "What would you like to plan?",
+			mapColumnOffset: "0px",
 		};
 		document.body.style.overflowY = "scroll";
 
@@ -43,8 +45,26 @@ class SingleDay extends React.Component {
 		this.handleSelectMilestone = this.handleSelectMilestone.bind(this);
 		this.handleAddTransportation = this.handleAddTransportation.bind(this);
 		this.handleRemoveTransportationContainer = this.handleRemoveTransportationContainer.bind(this);
-		this.handleEnterAddTransportation = this.handleEnterAddTransportation.bind(this);
-		this.handleLeaveAddTransportation = this.handleLeaveAddTransportation.bind(this);
+		this.onScrollY = this.onScrollY.bind(this);
+	}
+
+
+	componentWillMount(){
+		window.addEventListener('scroll', _.throttle(this.onScrollY, 500));
+
+	}
+
+	componentWillUnmount(){
+		window.removeEventListener('scroll', _.throttle(this.onScrollY, 500));
+	}
+
+	onScrollY(){
+		if(window.outerWidth >= 845){ //break point for two columns
+			this.setState({mapColumnOffset: window.scrollY});
+		}else{
+			this.setState({mapColumnOffset: 0});
+
+		}
 	}
 
 	handleChangeDay(dayChange) {
@@ -52,29 +72,12 @@ class SingleDay extends React.Component {
 		this.setState({ dayNum: this.state.dayNum + dayChange });
 	}
 
-	handleLeaveAddTransportation(){
-		console.log("huh? eventListener");
-		window.addEventListener('click', this.handleRemoveTransportationContainer);
-	}
-
-	handleEnterAddTransportation(){
-		console.log("remove eventListener");
-		window.removeEventListener('click', this.handleRemoveTransportationContainer);
-	}
-
 	handleAddTransportation(id) {
 		this.setState({ addTransportationIndex: id });
 	}
 
 	handleRemoveTransportationContainer(e) {
-	 e.preventDefault();
-	 console.log("Transportation container is: ", document.getElementById("transportation-container"));
-	 if (document.getElementById("transportation-container") && !document.getElementById("transportation-container").contains(e.target)){
-  	  this.setState({ addTransportationIndex: null });
-  	  console.log("closing transportation container");
-			window.removeEventListener('click', this.handleRemoveTransportationContainer);
-
-  	}
+  	this.setState({ addTransportationIndex: null });
   }
 
 	handleSelectMilestone(id) {
@@ -127,8 +130,7 @@ class SingleDay extends React.Component {
 			? <AddTransportationContainer 
 				id = {this.state.addTransportationIndex}
 				transportation= {FAKEDATA[this.state.dayNum - 1].filter(x => x.id === this.state.addTransportationIndex)[0]}
-				handleLeaveAddTransportation={this.handleLeaveAddTransportation}
-				handleEnterAddTransportation={this.handleEnterAddTransportation}
+				handleRemoveTransportationContainer={this.handleRemoveTransportationContainer}
 				/>
 			: null;
 
@@ -166,7 +168,7 @@ class SingleDay extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className="col-md-5 map-column">
+						<div className="col-md-5 map-column" style={{marginTop: `${this.state.mapColumnOffset}px`}} >
 							<div className="align-center">
 								<AddMilestone
 									viewType="singleDay"

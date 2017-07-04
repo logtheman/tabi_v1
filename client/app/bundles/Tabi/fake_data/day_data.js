@@ -43,7 +43,7 @@ const FAKEDATA = [
 		{
 			id: 11,
 			type: 'transportation',
-			transportationType: 'taxi',
+			transportationType: 'drive',
 			startLocation: {
 				name: "Naha Airport",
 				lat: 26.2064033,
@@ -84,7 +84,7 @@ const FAKEDATA = [
 		{
 			id: 13,
 			type: 'transportation',
-			transportationType: 'car',
+			transportationType: 'drive',
 			startLocation: {
 				name: 'NahaNa Hotel & Spa',
 				lat: 26.2144722, 

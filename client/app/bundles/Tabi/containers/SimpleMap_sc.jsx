@@ -19,13 +19,16 @@ export default class SimpleMap extends Component {
     const Markers =
       this.props.locations &&
       this.props.locations.map((marker, index) => {
-        if (marker.ID === this.props.activeLocation) {
-          center.lat = marker.lat;
-          center.lng = marker.lng;
-        }
         if(marker.type === 'transportation'){
           return; //to build out logic for lines between markers
         }
+
+        if (marker.id === this.props.activeLocation) {
+          center.lat = marker.lat;
+          center.lng = marker.lng;
+
+        }
+
         //TODO : add lines between locations
         // let plotLine = null;
         // if(index > 0){
@@ -56,9 +59,8 @@ export default class SimpleMap extends Component {
             />
         );
       });
-
     return (
-      <GoogleMapReact center={center} defaultZoom={this.state.zoom} >
+      <GoogleMapReact center={center} defaultZoom={this.state.zoom} resetBoundsOnResize = {true}>
         {Markers}
       </GoogleMapReact>
     );

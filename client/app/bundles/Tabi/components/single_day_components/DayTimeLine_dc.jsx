@@ -3,6 +3,8 @@ import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 
 import Milestone from "./Milestone_dc";
 import Transportation from "./Transportation_dc";
+import AddTransportationRow from "./AddTransportationRow_dc";
+
 
 
 const spacingMultiplier = 20;
@@ -36,7 +38,7 @@ const DayTimeLine = props => {
 
 	const nonLodging = props.dayInfo.filter(act => { return (act.type !== 'lodging') });
 	let dayTimeline = nonLodging.map((act, i) => {
-		let space = (i < nonLodging.length-1)
+			let space = (i < nonLodging.length-1)
 			? (nonLodging[i + 1].startTimeNum - act.endTimeNum) * spacingMultiplier
 			: 0; //find difference in hours between activities and add space after the first Milestone
 			let rowHeight = 73; //default height
@@ -46,19 +48,30 @@ const DayTimeLine = props => {
 				showDetail = true;
 			}  
 
+			// must be > 1 element && > 1 remaining  && the element before && after are not transportation
+			const spacerOrAddTrans = (nonLodging[i + 1] && nonLodging[i] &&
+				nonLodging[i + 1].type !== 'transportation' && nonLodging[i].type !== 'transportation') ?
+				(<AddTransportationRow />) 
+				: (<div style={{ height: space + "px" }} />);
+
 			const timelineComponent = (act.type === 'transportation') ? (
-				<div id={`TA${act.id}`} onClick={() => props.handleAddTransportation(act.id)}>
-					<Transportation info={act} />
+				<div>
+					<div id={`TA${act.id}`} onClick={() => props.handleAddTransportation(act.id)}>
+						<Transportation info={act} />
+					</div>
 					<div style={{ height: space + "px" }} />
 				</div>
 				) :
-			(<div
-					onMouseEnter={() => props.handleMouseEnterMilestone(act.id)}
-					onMouseLeave={props.handleMouseLeaveMilestone}
-					onClick={() => props.handleSelectMilestone(act.id)}
-				>
-					<Milestone info={act} height={rowHeight} showDetail={showDetail}/>
-					<div style={{ height: space + "px" }} />
+				(
+					<div>
+						<div
+						onMouseEnter={() => props.handleMouseEnterMilestone(act.id)}
+						onMouseLeave={props.handleMouseLeaveMilestone}
+						onClick={() => props.handleSelectMilestone(act.id)}
+					>
+						<Milestone info={act} height={rowHeight} showDetail={showDetail}/>
+						</div>
+					{spacerOrAddTrans}
 				</div>);
 
 			return (
